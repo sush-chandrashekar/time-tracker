@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sp_container">
+    <sp_container action="INSERT_OR_UPDATE">
+        <background_color/>
+        <background_image/>
+        <background_style>default</background_style>
+        <bootstrap_alt>false</bootstrap_alt>
+        <class_name/>
+        <container_class_name/>
+        <name>Time Tracking Clock in - Container 1</name>
+        <order>1</order>
+        <sp_page display_value="time_tracking_clock_in">15bb99561b101810b22663142a4bcb69</sp_page>
+        <subheader>false</subheader>
+        <sys_class_name>sp_container</sys_class_name>
+        <sys_created_by>sush.chan</sys_created_by>
+        <sys_created_on>2020-04-23 17:43:54</sys_created_on>
+        <sys_id>96f051661b181810b22663142a4bcba4</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>Time Tracking Clock in - Container 1</sys_name>
+        <sys_package display_value="Time Tracking" source="x_snc_time_trackin">54476f311b14d410b22663142a4bcbc6</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="Time Tracking">54476f311b14d410b22663142a4bcbc6</sys_scope>
+        <sys_update_name>sp_container_96f051661b181810b22663142a4bcba4</sys_update_name>
+        <sys_updated_by>sush.chan</sys_updated_by>
+        <sys_updated_on>2020-04-23 17:43:54</sys_updated_on>
+        <title/>
+        <width>container</width>
+    </sp_container>
+</record_update>

@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sp_css">
+    <sp_css action="INSERT_OR_UPDATE">
+        <css>/**&#13;
+ * @license angularjs-bootstrap-datetimepicker&#13;
+ * Copyright 2016 Knight Rider Consulting, Inc. http://www.knightrider.com&#13;
+ * License: MIT&#13;
+ */&#13;
+.datetimepicker {&#13;
+  border-radius: 4px;&#13;
+  direction: ltr;&#13;
+  display: block;&#13;
+  margin-top: 1px;&#13;
+  -webkit-user-select: none;&#13;
+  -moz-user-select: none;&#13;
+  -ms-user-select: none;&#13;
+  user-select: none;&#13;
+  width: 320px;&#13;
+}&#13;
+.datetimepicker &gt; div {&#13;
+  display: none;&#13;
+}&#13;
+.datetimepicker .hour,&#13;
+.datetimepicker .minute {&#13;
+  height: 34px;&#13;
+  line-height: 34px;&#13;
+  margin: 0;&#13;
+  width: 25%;&#13;
+}&#13;
+.datetimepicker .table {&#13;
+  margin: 0;&#13;
+}&#13;
+.datetimepicker .table td,&#13;
+.datetimepicker .table th {&#13;
+  border: 0;&#13;
+  border-radius: 4px;&#13;
+  height: 20px;&#13;
+  text-align: center;&#13;
+}&#13;
+.datetimepicker .minute:hover,&#13;
+.datetimepicker .hour:hover,&#13;
+.datetimepicker .day:hover,&#13;
+.datetimepicker .switch:hover,&#13;
+.datetimepicker .left:hover,&#13;
+.datetimepicker .right:hover {&#13;
+  background: #eee;&#13;
+  cursor: pointer;&#13;
+}&#13;
+.datetimepicker .disabled,&#13;
+.datetimepicker .disabled:hover {&#13;
+  background: none;&#13;
+  color: #ebebeb;&#13;
+  cursor: default;&#13;
+}&#13;
+.datetimepicker .active,&#13;
+.datetimepicker .active:hover,&#13;
+.datetimepicker .active.disabled,&#13;
+.datetimepicker .active.disabled:hover {&#13;
+  background-color: #04c;&#13;
+  background-image: linear-gradient(to bottom, #08c, #04c);&#13;
+  background-repeat: repeat-x;&#13;
+  border-color: #04c #04c #002a80;&#13;
+  color: #fff;&#13;
+  -webkit-filter: progid:dximagetransform.microsoft.gradient(startColorstr='#08c', endColorstr='#04c', GradientType=0);&#13;
+  filter: progid:dximagetransform.microsoft.gradient(startColorstr='#08c', endColorstr='#04c', GradientType=0);&#13;
+  text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25);&#13;
+}&#13;
+.datetimepicker .current,&#13;
+.datetimepicker .current:hover,&#13;
+.datetimepicker .current.disabled,&#13;
+.datetimepicker .current.disabled:hover {&#13;
+  background-color: #e5e5e5;&#13;
+}&#13;
+.datetimepicker .active:hover,&#13;
+.datetimepicker .active:hover:hover,&#13;
+.datetimepicker .active.disabled:hover,&#13;
+.datetimepicker .active.disabled:hover:hover,&#13;
+.datetimepicker .active:active,&#13;
+.datetimepicker .active:hover:active,&#13;
+.datetimepicker .active.disabled:active,&#13;
+.datetimepicker .active.disabled:hover:active,&#13;
+.datetimepicker .active.active,&#13;
+.datetimepicker .active:hover.active,&#13;
+.datetimepicker .active.disabled.active,&#13;
+.datetimepicker .active.disabled:hover.active,&#13;
+.datetimepicker .active.disabled,&#13;
+.datetimepicker .active:hover.disabled,&#13;
+.datetimepicker .active.disabled.disabled,&#13;
+.datetimepicker .active.disabled:hover.disabled,&#13;
+.datetimepicker td.active[disabled],&#13;
+.datetimepicker td.active:hover[disabled],&#13;
+.datetimepicker td.active.disabled[disabled],&#13;
+.datetimepicker td.active.disabled:hover[disabled],&#13;
+.datetimepicker span.active[disabled],&#13;
+.datetimepicker span.active:hover[disabled],&#13;
+.datetimepicker span.active.disabled[disabled],&#13;
+.datetimepicker span.active.disabled:hover[disabled] {&#13;
+  background-color: #04c;&#13;
+}&#13;
+.datetimepicker span {&#13;
+  border-radius: 4px;&#13;
+  cursor: pointer;&#13;
+  display: block;&#13;
+  float: left;&#13;
+  height: 54px;&#13;
+  line-height: 54px;&#13;
+  margin: 1%;&#13;
+  width: 23%;&#13;
+}&#13;
+.datetimepicker span:hover {&#13;
+  background: #eee;&#13;
+}&#13;
+.datetimepicker .past,&#13;
+.datetimepicker .future {&#13;
+  color: #999;&#13;
+}&#13;
+&#13;
+/*# sourceMappingURL=datetimepicker.css.map */</css>
+        <name>datetimepicker.css</name>
+        <sys_class_name>sp_css</sys_class_name>
+        <sys_created_by>sush.chan</sys_created_by>
+        <sys_created_on>2020-04-23 17:42:30</sys_created_on>
+        <sys_id>08a05d261b181810b22663142a4bcbcd</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>datetimepicker.css</sys_name>
+        <sys_package display_value="Time Tracking" source="x_snc_time_trackin">54476f311b14d410b22663142a4bcbc6</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="Time Tracking">54476f311b14d410b22663142a4bcbc6</sys_scope>
+        <sys_update_name>sp_css_08a05d261b181810b22663142a4bcbcd</sys_update_name>
+        <sys_updated_by>sush.chan</sys_updated_by>
+        <sys_updated_on>2020-04-23 17:42:30</sys_updated_on>
+    </sp_css>
+</record_update>

@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sp_widget">
+    <sp_widget action="INSERT_OR_UPDATE">
+        <category>custom</category>
+        <client_script><![CDATA[function($location) {
+  /* widget controller */
+  var c = this;
+
+  for (var index = 0; index < c.data.timeCardDailies.length; index++) {
+    c.data.timeCardDailies[index].formatedDate = moment(c.data.timeCardDailies[index].date).format("ddd, MMM Do");
+  }
+  c.tdClicked = function(td){
+    $location.url('?id=time_tracking_log_review&tdid='+td.sys_id);
+  }
+
+}]]></client_script>
+        <controller_as>c</controller_as>
+        <css>.tt-days-listing {
+    h3 {
+        margin-bottom: 20px;
+        font-weight: bold;;
+    }
+    .each-td {
+        height: 70px;
+        width: 90%;
+        padding: 20px;
+        margin-left: auto;
+        margin-right: auto;
+        background-color: $brand-primary;
+        font-size: 24px;
+        margin-bottom: 10px;
+        color: #fff;
+        border-radius: 6px;
+        .cal-icon {
+            margin-right: 10px;
+        }
+        @media only screen and (min-device-width: 320px) and (max-device-width: 568px) and (-webkit-min-device-pixel-ratio: 2) {
+
+          height: 60px;
+          width: 100%;
+          padding: 15px;
+          margin-left: auto;
+          margin-right: auto;
+          background-color: #1F8476;
+          font-size: 17px;
+          margin-bottom: 10px;
+          color: #fff;
+          border-radius: 6px;
+          text-align: center;
+        }
+    }
+}</css>
+        <data_table>sp_instance</data_table>
+        <demo_data/>
+        <description/>
+        <docs/>
+        <field_list/>
+        <has_preview>false</has_preview>
+        <id>time_tracker_days_listing</id>
+        <internal>false</internal>
+        <link><![CDATA[function link(scope, element, attrs, controller) {
+  
+}]]></link>
+        <name>TIme Tracker Days Listing</name>
+        <option_schema/>
+        <public>false</public>
+        <roles>x_snc_time_trackin.user</roles>
+        <script><![CDATA[(function() {
+  /* populate the 'data' object */
+  /* e.g., data.table = $sp.getValue('table'); */
+  var imt = $sp.getParameter('imt');
+  data.timeCardDailies = [];
+  var gr = new GlideRecord('time_card_daily');
+  gr.addQuery('u_parent', imt);
+  gr.addQuery('u_user', gs.getUserID());
+  gr.orderBy('date');
+  gr.query();
+  while (gr.next()) {
+    var temp= {};
+    gs.info(gr.getDisplayValue('u_parent'));
+    gs.info(gr.getDisplayValue('date'));
+    gs.info(gr.getDisplayValue('u_user'));
+    temp.sys_id = gr.sys_id.toString();
+    temp.imt = imt;
+    temp.date = gr.getDisplayValue('date');
+    temp.timeWorked = gr.getDisplayValue('time_worked');
+    data.timeCardDailies.push(temp);
+    data.imtName = gr.u_parent.name.getDisplayValue();
+  }
+})();]]></script>
+        <servicenow>false</servicenow>
+        <sys_class_name>sp_widget</sys_class_name>
+        <sys_created_by>sush.chan</sys_created_by>
+        <sys_created_on>2020-04-24 02:58:23</sys_created_on>
+        <sys_id>afcf4be61b1c1810b22663142a4bcb00</sys_id>
+        <sys_mod_count>60</sys_mod_count>
+        <sys_name>TIme Tracker Days Listing</sys_name>
+        <sys_package display_value="Time Tracking" source="x_snc_time_trackin">54476f311b14d410b22663142a4bcbc6</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="Time Tracking">54476f311b14d410b22663142a4bcbc6</sys_scope>
+        <sys_update_name>sp_widget_afcf4be61b1c1810b22663142a4bcb00</sys_update_name>
+        <sys_updated_by>brett.karl</sys_updated_by>
+        <sys_updated_on>2020-05-01 12:14:40</sys_updated_on>
+        <template><![CDATA[<div class="col-md-12 tt-days-listing">
+  <!-- your widget template -->
+  <div class="text-center"><h3>Review your time entries for IMT {{c.data.imtName}}</h3></div>
+  <div ng-click="c.tdClicked(td)" class="each-td" ng-repeat="td in c.data.timeCardDailies">
+   <span class="cal-icon"> <i class="fa fa-calendar" aria-hidden="true"></i></span> <span class="date">{{td.formatedDate}}</span> - <span>Total: {{td.timeWorked}} hrs</span>
+  </div>
+  <div ng-if="c.data.timeCardDailies.length == 0">
+    <p>No time cards found</p>
+  </div>
+</div>]]></template>
+    </sp_widget>
+</record_update>

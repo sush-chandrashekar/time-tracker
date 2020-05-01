@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_script_include">
+    <sys_script_include action="INSERT_OR_UPDATE">
+        <access>package_private</access>
+        <active>true</active>
+        <api_name>x_snc_time_trackin.TimeTrackerUtil</api_name>
+        <caller_access/>
+        <client_callable>false</client_callable>
+        <description/>
+        <name>TimeTrackerUtil</name>
+        <script><![CDATA[var TimeTrackerUtil = Class.create();
+TimeTrackerUtil.prototype = {
+    initialize: function() {
+    },
+	removeRole: function(user, role) {
+        var useRoleGr = new GlideRecord('sys_user_has_role');
+        useRoleGr.addQuery("role", role);
+        useRoleGr.addQuery("user", user);
+        useRoleGr.query();
+        if (useRoleGr.next()) {
+            useRoleGr.state = 'pending_approval';
+            useRoleGr.update();
+        }
+    },
+
+    assignRole: function(user, role) {
+        var useRoleGr = new GlideRecord('sys_user_has_role');
+        useRoleGr.addQuery("role", role);
+        useRoleGr.addQuery("user", user);
+        useRoleGr.query();
+        if (useRoleGr.next()) {
+            useRoleGr.state = 'active';
+            useRoleGr.update();
+            return;
+        }
+        this._insertUserRole(user, role);
+
+    },
+
+    _insertUserRole: function(user, role) {
+        var useRoleGr = new GlideRecord('sys_user_has_role');
+        useRoleGr.initialize();
+        useRoleGr.role = role;
+        useRoleGr.user = user;
+        useRoleGr.insert();
+    },
+
+    hasRole: function(roles) {
+        return gs.getUser().hasRole(roles);
+    },
+
+
+    type: 'TimeTrackerUtil'
+};]]></script>
+        <sys_class_name>sys_script_include</sys_class_name>
+        <sys_created_by>sush.chan</sys_created_by>
+        <sys_created_on>2020-04-21 21:51:00</sys_created_on>
+        <sys_id>4ae5ff791b14d410b22663142a4bcb88</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>TimeTrackerUtil</sys_name>
+        <sys_package display_value="Time Tracking" source="x_snc_time_trackin">54476f311b14d410b22663142a4bcbc6</sys_package>
+        <sys_policy>read</sys_policy>
+        <sys_scope display_value="Time Tracking">54476f311b14d410b22663142a4bcbc6</sys_scope>
+        <sys_update_name>sys_script_include_4ae5ff791b14d410b22663142a4bcb88</sys_update_name>
+        <sys_updated_by>sush.chan</sys_updated_by>
+        <sys_updated_on>2020-04-21 21:51:00</sys_updated_on>
+    </sys_script_include>
+</record_update>

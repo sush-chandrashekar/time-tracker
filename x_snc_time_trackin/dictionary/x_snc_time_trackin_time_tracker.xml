@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?><database>
+    <element label="Time Tracker" max_length="40" name="x_snc_time_trackin_time_tracker" sizeclass="17" type="collection">
+        <element default="true" label="Active" max_length="40" name="active" type="boolean"/>
+        <element label="Check in" max_length="40" name="check_in" type="glide_date_time"/>
+        <element label="Check out" max_length="40" name="check_out" type="glide_date_time"/>
+        <element label="Duration (hrs)" max_length="15" name="duration" type="decimal"/>
+        <element label="Note" max_length="500" name="note" type="string"/>
+        <element label="Parent" max_length="32" name="parent" reference="sn_imt_imt_incidents" type="reference"/>
+        <element default="javascript:current.getTableName();" label="Class" max_length="80" name="sys_class_name" type="sys_class_name"/>
+        <element label="Time card daily" max_length="32" name="time_card_daily" reference="time_card_daily" reference_qual="javascript:&quot;u_user=&quot;+current.user" type="reference" use_reference_qualifier="advanced"/>
+        <element choice="1" label="Type" max_length="40" name="type" type="choice">
+            <choice>
+                <element inactive_on_update="false" label="Work" sequence="100" value="Work"/>
+                <element inactive_on_update="false" label="Lunch" sequence="200" value="Lunch"/>
+                <element inactive_on_update="false" label="Travel" sequence="300" value="Travel"/>
+            </choice>
+        </element>
+        <element label="User" max_length="32" name="user" reference="sys_user" type="reference"/>
+        <index name="index">
+            <element name="parent"/>
+        </index>
+        <index name="index2">
+            <element name="time_card_daily"/>
+        </index>
+        <index name="index3">
+            <element name="user"/>
+        </index>
+        <index name="index4">
+            <element name="sys_class_name"/>
+        </index>
+    </element>
+</database>

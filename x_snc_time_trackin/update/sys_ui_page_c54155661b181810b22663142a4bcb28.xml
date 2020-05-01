@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_ui_page">
+    <sys_ui_page action="INSERT_OR_UPDATE">
+        <category>general</category>
+        <client_script/>
+        <description/>
+        <direct>true</direct>
+        <endpoint>x_snc_time_trackin_datetimepicker.html.do</endpoint>
+        <html><![CDATA[<div class="datetimepicker table-responsive">
+    <table class="table table-condensed  {{ data.currentView }}-view">
+        <thead>
+        <tr>
+            <th class="left"
+                data-ng-click="changeView(data.currentView, data.leftDate, $event)"
+                data-ng-show="data.leftDate.selectable"><i class="glyphicon glyphicon-arrow-left"><span class="sr-only">{{ screenReader.previous }}</span></i>
+            </th>
+            <th class="switch"
+                colspan="5"
+                data-ng-show="data.previousViewDate.selectable"
+                data-ng-click="changeView(data.previousView, data.previousViewDate, $event)">{{ data.previousViewDate.display }}</th>
+            <th class="right" data-ng-click="changeView(data.currentView, data.rightDate, $event)"
+                data-ng-show="data.rightDate.selectable"><i class="glyphicon glyphicon-arrow-right"><span
+                    class="sr-only">{{ screenReader.next }}</span></i>
+            </th>
+        </tr>
+        <tr>
+            <th class="dow" data-ng-repeat="day in data.dayNames">{{ day }}</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr data-ng-if="data.currentView !== 'day'">
+            <td colspan="7">
+                          <span class="{{ data.currentView }}"
+                                data-ng-repeat="dateObject in data.dates"
+                                data-ng-class="{current: dateObject.current, active: dateObject.active, past: dateObject.past, future: dateObject.future, disabled: !dateObject.selectable}"
+                                data-ng-click="changeView(data.nextView, dateObject, $event)">{{ dateObject.display }}</span></td>
+        </tr>
+        <tr data-ng-if="data.currentView === 'day'" data-ng-repeat="week in data.weeks">
+            <td data-ng-repeat="dateObject in week.dates"
+                data-ng-click="changeView(data.nextView, dateObject, $event)"
+                class="day"
+                data-ng-class="{current: dateObject.current, active: dateObject.active, past: dateObject.past, future: dateObject.future, disabled: !dateObject.selectable}">{{ dateObject.display }}</td>
+        </tr>
+        </tbody>
+    </table>
+</div>]]></html>
+        <name>datetimepicker.html</name>
+        <processing_script/>
+        <sys_class_name>sys_ui_page</sys_class_name>
+        <sys_created_by>sush.chan</sys_created_by>
+        <sys_created_on>2020-04-23 17:45:28</sys_created_on>
+        <sys_id>c54155661b181810b22663142a4bcb28</sys_id>
+        <sys_mod_count>1</sys_mod_count>
+        <sys_name>datetimepicker.html</sys_name>
+        <sys_package display_value="Time Tracking" source="x_snc_time_trackin">54476f311b14d410b22663142a4bcbc6</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="Time Tracking">54476f311b14d410b22663142a4bcbc6</sys_scope>
+        <sys_update_name>sys_ui_page_c54155661b181810b22663142a4bcb28</sys_update_name>
+        <sys_updated_by>sush.chan</sys_updated_by>
+        <sys_updated_on>2020-04-23 17:47:24</sys_updated_on>
+    </sys_ui_page>
+</record_update>
