@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sp_row">
+    <sp_row action="INSERT_OR_UPDATE">
+        <class_name/>
+        <order>1</order>
+        <sp_column/>
+        <sp_container display_value="Time Tracking Submission Confirmation - Container 1">c47f68281b701c10b22663142a4bcbac</sp_container>
+        <sys_class_name>sp_row</sys_class_name>
+        <sys_created_by>brett.karl</sys_created_by>
+        <sys_created_on>2020-05-12 06:40:55</sys_created_on>
+        <sys_id>047f68281b701c10b22663142a4bcbaf</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>1</sys_name>
+        <sys_package display_value="Time Tracking" source="x_snc_time_trackin">54476f311b14d410b22663142a4bcbc6</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="Time Tracking">54476f311b14d410b22663142a4bcbc6</sys_scope>
+        <sys_update_name>sp_row_047f68281b701c10b22663142a4bcbaf</sys_update_name>
+        <sys_updated_by>brett.karl</sys_updated_by>
+        <sys_updated_on>2020-05-12 06:40:55</sys_updated_on>
+    </sp_row>
+</record_update>

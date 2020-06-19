@@ -1,114 +1,347 @@
 <?xml version="1.0" encoding="UTF-8"?><record_update table="sp_widget">
     <sp_widget action="INSERT_OR_UPDATE">
         <category>custom</category>
-        <client_script><![CDATA[function($location) {
-  /* widget controller */
-  var c = this;
+        <client_script><![CDATA[function($location, spModal, spUtil, $scope, $window) {
+    /* widget controller */
+    var c = this;
 
-  for (var index = 0; index < c.data.timeCardDailies.length; index++) {
-    c.data.timeCardDailies[index].formatedDate = moment(c.data.timeCardDailies[index].date).format("ddd, MMM Do");
-  }
-  c.tdClicked = function(td){
-    $location.url('?id=time_tracking_log_review&tdid='+td.sys_id);
-  }
+    for (var index = 0; index < c.data.timeCardDailies.length; index++) {
+        c.data.timeCardDailies[index].formatedDate = moment(c.data.timeCardDailies[index].date).format("ddd, MMM Do");
+        c.data.timeCardDailies[index].timeWorkeda = parseInt(c.data.timeCardDailies[index].timeWorked);
+    }
+    c.tdClicked = function(td) {
+        $location.url('?id=time_tracking_log_review&tdid=' + td.sys_id + '&imt=' + c.data.imt);
+    }
+    c.reopenTime = function() {
+        c.data.timeSubmitted = false;
+        c.server.update(c.data.timeSubmitted).then(function() {
+            for (var index = 0; index < c.data.timeCardDailies.length; index++) {
+                c.data.timeCardDailies[index].formatedDate = moment(c.data.timeCardDailies[index].date).format("ddd, MMM Do");
+                c.data.timeCardDailies[index].timeWorkeda = parseInt(c.data.timeCardDailies[index].timeWorked);
+            }
+            $window.location.reload();
+        });
 
+    };
+
+    c.submitTime = function() {
+        //ask the user for a string
+        spModal.open({
+            title: 'Timecard Submission',
+            message: '<center><h3>Have you reviewed each time card entry? <br>Are you sure your timecard is complete?</h3> <br>Note: Once submitted, you will only be allow 5 days past the last date in the pay period to make further changes without contacting payroll.</center>',
+            input: false,
+        }).then(function() {
+            c.data.timeSubmitted = true;
+            c.server.update(c.data.timeSubmitted).then(function() {
+                for (var index = 0; index < c.data.timeCardDailies.length; index++) {
+                    c.data.timeCardDailies[index].formatedDate = moment(c.data.timeCardDailies[index].date).format("ddd, MMM Do");
+                    c.data.timeCardDailies[index].timeWorkeda = parseInt(c.data.timeCardDailies[index].timeWorked);
+                }
+                $location.url('?id=time_tracking_submission_confirmation');
+            });
+        });
+    };
 }]]></client_script>
         <controller_as>c</controller_as>
-        <css>.tt-days-listing {
-    h3 {
-        margin-bottom: 20px;
-        font-weight: bold;;
-    }
-    .each-td {
-        height: 70px;
-        width: 90%;
-        padding: 20px;
-        margin-left: auto;
-        margin-right: auto;
-        background-color: $brand-primary;
-        font-size: 24px;
-        margin-bottom: 10px;
-        color: #fff;
-        border-radius: 6px;
-        .cal-icon {
-            margin-right: 10px;
-        }
-        @media only screen and (min-device-width: 320px) and (max-device-width: 568px) and (-webkit-min-device-pixel-ratio: 2) {
-
-          height: 60px;
-          width: 100%;
-          padding: 15px;
-          margin-left: auto;
-          margin-right: auto;
-          background-color: #1F8476;
-          font-size: 17px;
-          margin-bottom: 10px;
-          color: #fff;
-          border-radius: 6px;
-          text-align: center;
-        }
-    }
+        <css>@media only screen &#13;
+  and (min-device-width: 375px) &#13;
+  and (max-device-width: 667px) &#13;
+  and (-webkit-min-device-pixel-ratio: 2)&#13;
+  and (orientation: landscape) { &#13;
+.text-right {&#13;
+	float: right;&#13;
+  	font-size: 2.2em;&#13;
+   	margin-top: -13.1% !important;&#13;
+}&#13;
+.timecardFrame {&#13;
+    max-height: 95px !important;&#13;
+    overflow-x: auto;&#13;
+ 	margin: 13px 0;&#13;
+}    &#13;
+}&#13;
+&#13;
+.btn-reopen {&#13;
+	background-color: #fff !important;&#13;
+  	color: #1F8476 !important;&#13;
+}&#13;
+.subtext{&#13;
+	color: #8E999B;&#13;
+    font-size: 18px;&#13;
+    font-family: inherit;&#13;
+    font-weight: 500;&#13;
+    line-height: 1.1;&#13;
+}&#13;
+.header {&#13;
+    margin-bottom: 20px;&#13;
+    font-weight: bold;&#13;
+    font-size: 24px;&#13;
+	color: #2e2e2e;&#13;
+	display: block;&#13;
+}&#13;
+.timecardFrame {&#13;
+    max-height: 245px;&#13;
+    overflow-x: auto;&#13;
+ 	margin: 13px 0;&#13;
+}&#13;
+&#13;
+.top-bottom {&#13;
+  box-shadow: 0 -5px 5px -5px #222, 0 5px 5px -5px #222;&#13;
+}&#13;
+.add-time {&#13;
+	padding: 0px;&#13;
+	line-height: 5;&#13;
+  &#13;
+ &#13;
+  .btn{&#13;
+  	 background-color: $brand-primary;&#13;
+    	color:#fff;&#13;
+       height: 50px;&#13;
+    width: 100%;&#13;
+    font-size:20px;&#13;
+    &#13;
+  }&#13;
+}&#13;
+&#13;
+.tt-days-listing {&#13;
+    h3 {&#13;
+        margin-bottom: 20px;&#13;
+        font-weight: bold;;&#13;
+      font-size: 24px;&#13;
+    }&#13;
+  &#13;
+  .flex{&#13;
+  	display: flex;&#13;
+    align-items: center;&#13;
+    justify-content: space-between;&#13;
+  }&#13;
+    .each-td-inactive {&#13;
+	background-color: #E8F2F1 !important;&#13;
+  	color: #2A3E41 !important;&#13;
+}&#13;
+  .each-td {&#13;
+	height: 70px;&#13;
+	width: 90%;&#13;
+	padding: 20px;&#13;
+	margin-left: auto;&#13;
+	margin-right: auto;&#13;
+	background-color: #fff;&#13;
+    font-size: 16px;&#13;
+    font-weight: bold;&#13;
+    margin-bottom: 10px;&#13;
+    color: #000;&#13;
+    border-radius: 2px;&#13;
+    text-align: center;&#13;
+    border: 1px solid #1F8376;&#13;
+        .cal-icon {&#13;
+            margin-right: 10px;&#13;
+        }&#13;
+        @media only screen and (min-device-width: 320px) and (max-device-width: 568px) and (-webkit-min-device-pixel-ratio: 2) {&#13;
+&#13;
+         height: 50px;&#13;
+    width: 100%;&#13;
+    padding: 15px;&#13;
+    margin-left: auto;&#13;
+    margin-right: auto;&#13;
+    background-color: #fff;&#13;
+    font-size: 16px;&#13;
+    font-weight: bold;&#13;
+    margin-bottom: 10px;&#13;
+    color: #000;&#13;
+    border-radius: 2px;&#13;
+    text-align: center;&#13;
+    border: 1px solid #1F8376;&#13;
+        }&#13;
+&#13;
+    }&#13;
+}&#13;
+     @media only screen and (min-device-width: 320px) and (max-device-width: 568px) and (-webkit-min-device-pixel-ratio: 2) {&#13;
+.text-left {&#13;
+	float: left !important;&#13;
+  	font-size: 2.2em !important;&#13;
+  	margin-top: -2% !important;&#13;
+}&#13;
+.text-right {&#13;
+	float: right !important;&#13;
+  	font-size: 2.2em !important;&#13;
+  	margin-top: -27.9% !important;&#13;
+ }    &#13;
+}&#13;
+&#13;
+.text-left {&#13;
+	float: left;&#13;
+  	font-size: 2.2em;&#13;
+}&#13;
+.text-right {&#13;
+	float: right;&#13;
+  	font-size: 2.2em;&#13;
+   	margin-top: -8.1%;&#13;
+}   &#13;
+.text-center {&#13;
+	display: block;&#13;
 }</css>
         <data_table>sp_instance</data_table>
         <demo_data/>
-        <description/>
+        <description>  open	&#13;
+  reviewed&#13;
+  submitted&#13;
+  locked</description>
         <docs/>
         <field_list/>
         <has_preview>false</has_preview>
         <id>time_tracker_days_listing</id>
         <internal>false</internal>
         <link><![CDATA[function link(scope, element, attrs, controller) {
-  
+ 
 }]]></link>
         <name>TIme Tracker Days Listing</name>
         <option_schema/>
         <public>false</public>
         <roles>x_snc_time_trackin.user</roles>
         <script><![CDATA[(function() {
-  /* populate the 'data' object */
-  /* e.g., data.table = $sp.getValue('table'); */
-  var imt = $sp.getParameter('imt');
-  data.timeCardDailies = [];
-  var gr = new GlideRecord('time_card_daily');
-  gr.addQuery('u_parent', imt);
-  gr.addQuery('u_user', gs.getUserID());
-  gr.orderBy('date');
-  gr.query();
-  while (gr.next()) {
-    var temp= {};
-    gs.info(gr.getDisplayValue('u_parent'));
-    gs.info(gr.getDisplayValue('date'));
-    gs.info(gr.getDisplayValue('u_user'));
-    temp.sys_id = gr.sys_id.toString();
-    temp.imt = imt;
-    temp.date = gr.getDisplayValue('date');
-    temp.timeWorked = gr.getDisplayValue('time_worked');
-    data.timeCardDailies.push(temp);
-    data.imtName = gr.u_parent.name.getDisplayValue();
-  }
+    /* populate the 'data' object */
+    /* e.g., data.table = $sp.getValue('table'); */
+    var imt = $sp.getParameter('imt');
+    data.imt = imt;
+    var pp = $sp.getParameter('pp');
+    data.pp = parseInt(pp);
+    data.timeCardDailies = [];
+
+    var gr = new GlideRecordSecure('time_card_daily');
+    gr.addQuery('u_parent', imt);
+    gr.addQuery('u_user', gs.getUserID());
+    gr.addQuery('u_pay_period', pp);
+    gr.orderBy('date');
+    gr.query();
+    while (gr.next()) {
+        var temp = {};
+        temp.sys_id = gr.sys_id.toString();
+        temp.imt = imt;
+        temp.date = gr.getDisplayValue('date');
+        temp.activeCardsa = gr.u_reviewed.getDisplayValue();
+        temp.timeWorked = gr.time_worked.getDisplayValue();
+		temp.locked = gr.u_locked.getDisplayValue();
+		temp.status = gr.u_status.getDisplayValue();
+		data.status = gr.u_status.getDisplayValue();
+		data.activeCards = gr.u_reviewed.getDisplayValue();
+		data.locked = gr.u_locked.getDisplayValue();
+        data.timeCardDailies.push(temp);
+        data.imtName = gr.u_parent.name.getDisplayValue();
+    }
+
+    var sc = new GlideAggregate('time_card_daily');
+    sc.addQuery('u_parent', imt);
+    sc.addQuery('u_user', gs.getUserID());
+    sc.addQuery('u_pay_period', pp);
+    sc.addAggregate('SUM', 'time_worked');
+    sc.setGroup(false);
+    sc.query();
+
+    while (sc.next()) {
+        data.totalHours = sc.getAggregate('SUM', 'time_worked');
+    }
+
+
+
+    //Obtain full month for styliing start
+    data.monthNames = ["January", "February", "March", "April", "May", "June",
+        "July", "August", "September", "October", "November", "December"
+    ];
+
+    var themonth = (data.pp % 2 == 0) ? (data.pp / 2) : ((data.pp + 1) / 2);
+    var lastday = new Date(2020, themonth, 0).getDate();
+    var dt = new Date(2020, themonth, 0);
+
+    function full_month(dt) {
+        return data.monthNames[dt.getMonth()];
+    }
+
+    var theyear = new Date(2020, themonth, 0).getFullYear();
+    var theday = (data.pp % 2 == 0) ? ('16 - ' + lastday) : ('1 - 15');
+    data.ppDate = full_month(dt) + ' ' + theday + ', ' + theyear;
+    //Obtain full month for styliing end
+
+
+    if (input && input.timeSubmitted == true) {
+        //  $sp.log('activate TC');
+        var grActive = new GlideRecordSecure('time_card_daily');
+        grActive.addQuery('u_parent', imt);
+        grActive.addQuery('u_user', gs.getUserID());
+        grActive.addQuery('u_pay_period', pp);
+        grActive.query();
+        while (grActive.next()) {
+            grActive.u_status = "Submitted";
+            grActive.update();
+        }
+    }
+
+    if (input && input.timeSubmitted == false) {
+        //$sp.log('activate TC');
+        var grInActive = new GlideRecordSecure('time_card_daily');
+        grInActive.addQuery('u_parent', imt);
+        grInActive.addQuery('u_user', gs.getUserID());
+        grInActive.addQuery('u_pay_period', pp);
+        grInActive.query();
+        while (grInActive.next()) {
+            grInActive.u_status = "Open";
+            grInActive.update();
+        }
+    }
+
 })();]]></script>
         <servicenow>false</servicenow>
         <sys_class_name>sp_widget</sys_class_name>
         <sys_created_by>sush.chan</sys_created_by>
         <sys_created_on>2020-04-24 02:58:23</sys_created_on>
         <sys_id>afcf4be61b1c1810b22663142a4bcb00</sys_id>
-        <sys_mod_count>60</sys_mod_count>
+        <sys_mod_count>334</sys_mod_count>
         <sys_name>TIme Tracker Days Listing</sys_name>
         <sys_package display_value="Time Tracking" source="x_snc_time_trackin">54476f311b14d410b22663142a4bcbc6</sys_package>
         <sys_policy/>
         <sys_scope display_value="Time Tracking">54476f311b14d410b22663142a4bcbc6</sys_scope>
         <sys_update_name>sp_widget_afcf4be61b1c1810b22663142a4bcb00</sys_update_name>
         <sys_updated_by>brett.karl</sys_updated_by>
-        <sys_updated_on>2020-05-01 12:14:40</sys_updated_on>
-        <template><![CDATA[<div class="col-md-12 tt-days-listing">
+        <sys_updated_on>2020-06-01 18:47:18</sys_updated_on>
+        <template><![CDATA[<div class="col-md-12 tt-days-listing row">
   <!-- your widget template -->
-  <div class="text-center"><h3>Review your time entries for IMT {{c.data.imtName}}</h3></div>
-  <div ng-click="c.tdClicked(td)" class="each-td" ng-repeat="td in c.data.timeCardDailies">
-   <span class="cal-icon"> <i class="fa fa-calendar" aria-hidden="true"></i></span> <span class="date">{{td.formatedDate}}</span> - <span>Total: {{td.timeWorked}} hrs</span>
+  <div class="text-center">
+       <div class="text-left"><a href="?id=time_tracking_days_review&imt={{c.data.imt}}&pp={{c.data.pp -1}}"><i class="fa fa-chevron-left"></i></a></div>
+    <span class="header">Timecard
+      <br>
+      <span class="subtext">{{data.ppDate}}</span>
+    </span>
+     <div class="text-right"><a href="?id=time_tracking_days_review&imt={{c.data.imt}}&pp={{c.data.pp +1 }}"><i class="fa fa-chevron-right"></i></a></div>
   </div>
-  <div ng-if="c.data.timeCardDailies.length == 0">
+<div class="timecardFrame top-bottom">
+  <div class="each-td" ng-click="c.tdClicked(td)" ng-class="{'each-td-inactive': td.status == 'Reviewed'}" ng-repeat="td in c.data.timeCardDailies" ng-if="c.data.status == 'Open'">
+  <div class="flex">
+      <span class="date">{{td.formatedDate}}</span>  <span>Total: {{td.timeWorked}} hrs</span>
+    </div>
+  </div>
+  
+    <div class="each-td" ng-class="{'each-td-inactive': td.status != 'Open'}" ng-repeat="td in c.data.timeCardDailies" ng-if="c.data.status != 'Open'">
+  <div class="flex">
+      <span class="date">{{td.formatedDate}}</span>  <span>Total: {{td.timeWorked}} hrs</span>
+    </div>
+  </div>
+  </div>
+
+  <div ng-if="c.data.timeCardDailies.length == 0"  class="each-td">
+    <div class="flex">
     <p>No time cards found</p>
+    </div>
   </div>
-</div>]]></template>
+  <div class="text-center">
+    <span class="text-center subtext" style="margin-left: 5%;">{{data.ppDate}}<br>
+	<span class="header" ng-show="data.totalHours"><b>Total: {{data.totalHours}} hrs</b></span>
+      
+      
+  </span>
+  </div>
+ <div class="text-center add-time col-md-12" >
+  <a ng-disabled=true class="home-btn btn btn-primary" ng-if="c.data.status == 'Open'">Submit</a>   
+  <a ng-disabled=false ng-click="c.submitTime()" class="home-btn btn btn-primary" ng-if="c.data.status == 'Reviewed'">Submit</a>   
+  <a ng-click="c.reopenTime()" class="home-btn btn btn-primary btn-reopen" ng-if="c.data.status == 'Submitted'">Reopen Timecard</a>
+  <a ng-disabled=true class="home-btn btn btn-primary" ng-if="c.data.status == 'Locked'">Contact Finance/Payroll to reopen</a>   
+ </div>]]></template>
     </sp_widget>
 </record_update>

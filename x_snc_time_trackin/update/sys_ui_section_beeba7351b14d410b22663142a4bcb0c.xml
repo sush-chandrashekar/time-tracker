@@ -4,13 +4,13 @@
             <element>.begin_split</element>
             <position>0</position>
             <sys_created_by>brett.karl</sys_created_by>
-            <sys_created_on>2020-05-01 12:17:04</sys_created_on>
-            <sys_id>7ce299cd1b6c1410b22663142a4bcb1f</sys_id>
+            <sys_created_on>2020-06-04 01:16:07</sys_created_on>
+            <sys_id>6aa18ef31b41d850b22663142a4bcb04</sys_id>
             <sys_mod_count>0</sys_mod_count>
             <sys_ui_formatter/>
             <sys_ui_section caption="NULL" display_value="" name="x_snc_time_trackin_time_tracker" sys_domain="global" view="Default view">beeba7351b14d410b22663142a4bcb0c</sys_ui_section>
             <sys_updated_by>brett.karl</sys_updated_by>
-            <sys_updated_on>2020-05-01 12:17:04</sys_updated_on>
+            <sys_updated_on>2020-06-04 01:16:07</sys_updated_on>
             <sys_user/>
             <type>.begin_split</type>
         </sys_ui_element>
@@ -18,55 +18,55 @@
             <element>check_in</element>
             <position>1</position>
             <sys_created_by>brett.karl</sys_created_by>
-            <sys_created_on>2020-05-01 12:17:04</sys_created_on>
-            <sys_id>f0e299cd1b6c1410b22663142a4bcb20</sys_id>
+            <sys_created_on>2020-06-04 01:16:07</sys_created_on>
+            <sys_id>e2a18ef31b41d850b22663142a4bcb05</sys_id>
             <sys_mod_count>0</sys_mod_count>
             <sys_ui_formatter/>
             <sys_ui_section caption="NULL" display_value="" name="x_snc_time_trackin_time_tracker" sys_domain="global" view="Default view">beeba7351b14d410b22663142a4bcb0c</sys_ui_section>
             <sys_updated_by>brett.karl</sys_updated_by>
-            <sys_updated_on>2020-05-01 12:17:04</sys_updated_on>
+            <sys_updated_on>2020-06-04 01:16:07</sys_updated_on>
+            <sys_user/>
+            <type/>
+        </sys_ui_element>
+        <sys_ui_element action="INSERT_OR_UPDATE">
+            <element>lunch_out</element>
+            <position>2</position>
+            <sys_created_by>brett.karl</sys_created_by>
+            <sys_created_on>2020-06-04 01:16:07</sys_created_on>
+            <sys_id>6aa18ef31b41d850b22663142a4bcb05</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_ui_formatter/>
+            <sys_ui_section caption="NULL" display_value="" name="x_snc_time_trackin_time_tracker" sys_domain="global" view="Default view">beeba7351b14d410b22663142a4bcb0c</sys_ui_section>
+            <sys_updated_by>brett.karl</sys_updated_by>
+            <sys_updated_on>2020-06-04 01:16:07</sys_updated_on>
+            <sys_user/>
+            <type/>
+        </sys_ui_element>
+        <sys_ui_element action="INSERT_OR_UPDATE">
+            <element>lunch_in</element>
+            <position>3</position>
+            <sys_created_by>brett.karl</sys_created_by>
+            <sys_created_on>2020-06-04 01:16:07</sys_created_on>
+            <sys_id>eea18ef31b41d850b22663142a4bcb05</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_ui_formatter/>
+            <sys_ui_section caption="NULL" display_value="" name="x_snc_time_trackin_time_tracker" sys_domain="global" view="Default view">beeba7351b14d410b22663142a4bcb0c</sys_ui_section>
+            <sys_updated_by>brett.karl</sys_updated_by>
+            <sys_updated_on>2020-06-04 01:16:07</sys_updated_on>
             <sys_user/>
             <type/>
         </sys_ui_element>
         <sys_ui_element action="INSERT_OR_UPDATE">
             <element>check_out</element>
-            <position>2</position>
-            <sys_created_by>brett.karl</sys_created_by>
-            <sys_created_on>2020-05-01 12:17:04</sys_created_on>
-            <sys_id>74e299cd1b6c1410b22663142a4bcb20</sys_id>
-            <sys_mod_count>0</sys_mod_count>
-            <sys_ui_formatter/>
-            <sys_ui_section caption="NULL" display_value="" name="x_snc_time_trackin_time_tracker" sys_domain="global" view="Default view">beeba7351b14d410b22663142a4bcb0c</sys_ui_section>
-            <sys_updated_by>brett.karl</sys_updated_by>
-            <sys_updated_on>2020-05-01 12:17:04</sys_updated_on>
-            <sys_user/>
-            <type/>
-        </sys_ui_element>
-        <sys_ui_element action="INSERT_OR_UPDATE">
-            <element>parent</element>
-            <position>3</position>
-            <sys_created_by>brett.karl</sys_created_by>
-            <sys_created_on>2020-05-01 12:17:04</sys_created_on>
-            <sys_id>f4e299cd1b6c1410b22663142a4bcb20</sys_id>
-            <sys_mod_count>0</sys_mod_count>
-            <sys_ui_formatter/>
-            <sys_ui_section caption="NULL" display_value="" name="x_snc_time_trackin_time_tracker" sys_domain="global" view="Default view">beeba7351b14d410b22663142a4bcb0c</sys_ui_section>
-            <sys_updated_by>brett.karl</sys_updated_by>
-            <sys_updated_on>2020-05-01 12:17:04</sys_updated_on>
-            <sys_user/>
-            <type/>
-        </sys_ui_element>
-        <sys_ui_element action="INSERT_OR_UPDATE">
-            <element>user</element>
             <position>4</position>
             <sys_created_by>brett.karl</sys_created_by>
-            <sys_created_on>2020-05-01 12:17:04</sys_created_on>
-            <sys_id>78e299cd1b6c1410b22663142a4bcb20</sys_id>
+            <sys_created_on>2020-06-04 01:16:07</sys_created_on>
+            <sys_id>66a18ef31b41d850b22663142a4bcb06</sys_id>
             <sys_mod_count>0</sys_mod_count>
             <sys_ui_formatter/>
             <sys_ui_section caption="NULL" display_value="" name="x_snc_time_trackin_time_tracker" sys_domain="global" view="Default view">beeba7351b14d410b22663142a4bcb0c</sys_ui_section>
             <sys_updated_by>brett.karl</sys_updated_by>
-            <sys_updated_on>2020-05-01 12:17:04</sys_updated_on>
+            <sys_updated_on>2020-06-04 01:16:07</sys_updated_on>
             <sys_user/>
             <type/>
         </sys_ui_element>
@@ -74,69 +74,69 @@
             <element>.split</element>
             <position>5</position>
             <sys_created_by>brett.karl</sys_created_by>
-            <sys_created_on>2020-05-01 12:17:04</sys_created_on>
-            <sys_id>f8e299cd1b6c1410b22663142a4bcb20</sys_id>
+            <sys_created_on>2020-06-04 01:16:07</sys_created_on>
+            <sys_id>eaa18ef31b41d850b22663142a4bcb06</sys_id>
             <sys_mod_count>0</sys_mod_count>
             <sys_ui_formatter/>
             <sys_ui_section caption="NULL" display_value="" name="x_snc_time_trackin_time_tracker" sys_domain="global" view="Default view">beeba7351b14d410b22663142a4bcb0c</sys_ui_section>
             <sys_updated_by>brett.karl</sys_updated_by>
-            <sys_updated_on>2020-05-01 12:17:04</sys_updated_on>
+            <sys_updated_on>2020-06-04 01:16:07</sys_updated_on>
             <sys_user/>
             <type>.split</type>
         </sys_ui_element>
         <sys_ui_element action="INSERT_OR_UPDATE">
-            <element>time_card_daily</element>
+            <element>parent</element>
             <position>6</position>
             <sys_created_by>brett.karl</sys_created_by>
-            <sys_created_on>2020-05-01 12:17:04</sys_created_on>
-            <sys_id>7ce299cd1b6c1410b22663142a4bcb20</sys_id>
+            <sys_created_on>2020-06-04 01:16:07</sys_created_on>
+            <sys_id>62a18ef31b41d850b22663142a4bcb07</sys_id>
             <sys_mod_count>0</sys_mod_count>
             <sys_ui_formatter/>
             <sys_ui_section caption="NULL" display_value="" name="x_snc_time_trackin_time_tracker" sys_domain="global" view="Default view">beeba7351b14d410b22663142a4bcb0c</sys_ui_section>
             <sys_updated_by>brett.karl</sys_updated_by>
-            <sys_updated_on>2020-05-01 12:17:04</sys_updated_on>
+            <sys_updated_on>2020-06-04 01:16:07</sys_updated_on>
+            <sys_user/>
+            <type/>
+        </sys_ui_element>
+        <sys_ui_element action="INSERT_OR_UPDATE">
+            <element>user</element>
+            <position>7</position>
+            <sys_created_by>brett.karl</sys_created_by>
+            <sys_created_on>2020-06-04 01:16:07</sys_created_on>
+            <sys_id>e6a18ef31b41d850b22663142a4bcb07</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_ui_formatter/>
+            <sys_ui_section caption="NULL" display_value="" name="x_snc_time_trackin_time_tracker" sys_domain="global" view="Default view">beeba7351b14d410b22663142a4bcb0c</sys_ui_section>
+            <sys_updated_by>brett.karl</sys_updated_by>
+            <sys_updated_on>2020-06-04 01:16:07</sys_updated_on>
+            <sys_user/>
+            <type/>
+        </sys_ui_element>
+        <sys_ui_element action="INSERT_OR_UPDATE">
+            <element>time_card_daily</element>
+            <position>8</position>
+            <sys_created_by>brett.karl</sys_created_by>
+            <sys_created_on>2020-06-04 01:16:07</sys_created_on>
+            <sys_id>6ea18ef31b41d850b22663142a4bcb07</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_ui_formatter/>
+            <sys_ui_section caption="NULL" display_value="" name="x_snc_time_trackin_time_tracker" sys_domain="global" view="Default view">beeba7351b14d410b22663142a4bcb0c</sys_ui_section>
+            <sys_updated_by>brett.karl</sys_updated_by>
+            <sys_updated_on>2020-06-04 01:16:07</sys_updated_on>
             <sys_user/>
             <type/>
         </sys_ui_element>
         <sys_ui_element action="INSERT_OR_UPDATE">
             <element>duration</element>
-            <position>7</position>
-            <sys_created_by>brett.karl</sys_created_by>
-            <sys_created_on>2020-05-01 12:17:04</sys_created_on>
-            <sys_id>fce299cd1b6c1410b22663142a4bcb20</sys_id>
-            <sys_mod_count>0</sys_mod_count>
-            <sys_ui_formatter/>
-            <sys_ui_section caption="NULL" display_value="" name="x_snc_time_trackin_time_tracker" sys_domain="global" view="Default view">beeba7351b14d410b22663142a4bcb0c</sys_ui_section>
-            <sys_updated_by>brett.karl</sys_updated_by>
-            <sys_updated_on>2020-05-01 12:17:04</sys_updated_on>
-            <sys_user/>
-            <type/>
-        </sys_ui_element>
-        <sys_ui_element action="INSERT_OR_UPDATE">
-            <element>type</element>
-            <position>8</position>
-            <sys_created_by>brett.karl</sys_created_by>
-            <sys_created_on>2020-05-01 12:17:04</sys_created_on>
-            <sys_id>70e299cd1b6c1410b22663142a4bcb21</sys_id>
-            <sys_mod_count>0</sys_mod_count>
-            <sys_ui_formatter/>
-            <sys_ui_section caption="NULL" display_value="" name="x_snc_time_trackin_time_tracker" sys_domain="global" view="Default view">beeba7351b14d410b22663142a4bcb0c</sys_ui_section>
-            <sys_updated_by>brett.karl</sys_updated_by>
-            <sys_updated_on>2020-05-01 12:17:04</sys_updated_on>
-            <sys_user/>
-            <type/>
-        </sys_ui_element>
-        <sys_ui_element action="INSERT_OR_UPDATE">
-            <element>active</element>
             <position>9</position>
             <sys_created_by>brett.karl</sys_created_by>
-            <sys_created_on>2020-05-01 12:17:04</sys_created_on>
-            <sys_id>f0e299cd1b6c1410b22663142a4bcb21</sys_id>
+            <sys_created_on>2020-06-04 01:16:07</sys_created_on>
+            <sys_id>e2a18ef31b41d850b22663142a4bcb08</sys_id>
             <sys_mod_count>0</sys_mod_count>
             <sys_ui_formatter/>
             <sys_ui_section caption="NULL" display_value="" name="x_snc_time_trackin_time_tracker" sys_domain="global" view="Default view">beeba7351b14d410b22663142a4bcb0c</sys_ui_section>
             <sys_updated_by>brett.karl</sys_updated_by>
-            <sys_updated_on>2020-05-01 12:17:04</sys_updated_on>
+            <sys_updated_on>2020-06-04 01:16:07</sys_updated_on>
             <sys_user/>
             <type/>
         </sys_ui_element>
@@ -144,29 +144,15 @@
             <element>.end_split</element>
             <position>10</position>
             <sys_created_by>brett.karl</sys_created_by>
-            <sys_created_on>2020-05-01 12:17:04</sys_created_on>
-            <sys_id>74e299cd1b6c1410b22663142a4bcb21</sys_id>
+            <sys_created_on>2020-06-04 01:16:07</sys_created_on>
+            <sys_id>6aa18ef31b41d850b22663142a4bcb08</sys_id>
             <sys_mod_count>0</sys_mod_count>
             <sys_ui_formatter/>
             <sys_ui_section caption="NULL" display_value="" name="x_snc_time_trackin_time_tracker" sys_domain="global" view="Default view">beeba7351b14d410b22663142a4bcb0c</sys_ui_section>
             <sys_updated_by>brett.karl</sys_updated_by>
-            <sys_updated_on>2020-05-01 12:17:04</sys_updated_on>
+            <sys_updated_on>2020-06-04 01:16:07</sys_updated_on>
             <sys_user/>
             <type>.end_split</type>
-        </sys_ui_element>
-        <sys_ui_element action="INSERT_OR_UPDATE">
-            <element>note</element>
-            <position>11</position>
-            <sys_created_by>brett.karl</sys_created_by>
-            <sys_created_on>2020-05-01 12:17:04</sys_created_on>
-            <sys_id>f4e299cd1b6c1410b22663142a4bcb21</sys_id>
-            <sys_mod_count>0</sys_mod_count>
-            <sys_ui_formatter/>
-            <sys_ui_section caption="NULL" display_value="" name="x_snc_time_trackin_time_tracker" sys_domain="global" view="Default view">beeba7351b14d410b22663142a4bcb0c</sys_ui_section>
-            <sys_updated_by>brett.karl</sys_updated_by>
-            <sys_updated_on>2020-05-01 12:17:04</sys_updated_on>
-            <sys_user/>
-            <type/>
         </sys_ui_element>
         <sys_ui_section action="INSERT_OR_UPDATE">
             <caption/>

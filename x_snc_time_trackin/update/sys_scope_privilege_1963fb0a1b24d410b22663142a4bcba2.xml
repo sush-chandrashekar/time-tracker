@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_scope_privilege">
+    <sys_scope_privilege action="INSERT_OR_UPDATE">
+        <operation>execute</operation>
+        <source_scope display_value="Time Tracking">54476f311b14d410b22663142a4bcbc6</source_scope>
+        <status>allowed</status>
+        <sys_class_name>sys_scope_privilege</sys_class_name>
+        <sys_created_by>brett.karl</sys_created_by>
+        <sys_created_on>2020-05-05 02:32:15</sys_created_on>
+        <sys_id>1963fb0a1b24d410b22663142a4bcba2</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>GlideRecordSecure.getValue</sys_name>
+        <sys_package display_value="Time Tracking" source="x_snc_time_trackin">54476f311b14d410b22663142a4bcbc6</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="Time Tracking">54476f311b14d410b22663142a4bcbc6</sys_scope>
+        <sys_update_name>sys_scope_privilege_1963fb0a1b24d410b22663142a4bcba2</sys_update_name>
+        <sys_updated_by>brett.karl</sys_updated_by>
+        <sys_updated_on>2020-05-05 02:32:15</sys_updated_on>
+        <target_name>GlideRecordSecure.getValue</target_name>
+        <target_scope display_value="Global">global</target_scope>
+        <target_type>scriptable</target_type>
+    </sys_scope_privilege>
+</record_update>

@@ -1,19 +1,31 @@
 <?xml version="1.0" encoding="UTF-8"?><record_update table="sp_widget">
     <sp_widget action="INSERT_OR_UPDATE">
         <category>custom</category>
-        <client_script><![CDATA[function($location, spModal, spUtil, $scope) {
+        <client_script><![CDATA[function($location, spModal, spUtil, $scope, $window) {
     /* widget controller */
     var c = this;
-    console.log(c.data.timeTrackers);
-    c.data.dateTd = moment(c.data.dateTd).format("ddd, MMM Do");
+    c.data.dateShort = moment(c.data.dateTd).format("dddd");
+    c.data.dateTd = moment(c.data.dateTd).format("MMMM Do, YYYY");
 
     for (var index = 0; index < c.data.timeTrackers.length; index++) {
-        c.data.timeTrackers[index].checkin = moment(c.data.timeTrackers[index].checkin).format("hA");
-        c.data.timeTrackers[index].checkout = moment(c.data.timeTrackers[index].checkout).format("hA");
+        c.data.timeTrackers[index].checkin = moment(c.data.timeTrackers[index].checkin).format("hh:mmA");
+        c.data.timeTrackers[index].checkout = moment(c.data.timeTrackers[index].checkout).format("hh:mmA");
     }
     c.tdClicked = function(td) {
-        $location.url('?id=time_tracking_clock_in&imt=' + td.imt + '&tr=' + td.sys_id);
+        $location.url('?id=time_tracking_clock_in&imt=' + c.data.imt + '&tr=' + td.sys_id);
     }
+
+    c.toggle = function() {
+
+        c.data.cardsReviewed = true;
+        c.server.update(c.data.cardsReviewed).then(function() {
+            for (var index = 0; index < c.data.timeTrackers.length; index++) {
+                c.data.timeTrackers[index].checkin = moment(c.data.timeTrackers[index].checkin).format("hh:mmA");
+                c.data.timeTrackers[index].checkout = moment(c.data.timeTrackers[index].checkout).format("hh:mmA");
+            }
+            $window.location.reload();
+        });
+    };
 
     c.trashClicked = function(td) {
         //ask the user for a string
@@ -25,48 +37,109 @@
             c.data.confirmDelete = true;
             if (c.data.confirmDelete) {
                 c.data.deleteRecord = td.sys_id;
-                spUtil.update($scope);
+                c.server.update(c.data.deleteRecord).then(function() {
+                    for (var index = 0; index < c.data.timeTrackers.length; index++) {
+                        c.data.timeTrackers[index].checkin = moment(c.data.timeTrackers[index].checkin).format("hh:mmA");
+                        c.data.timeTrackers[index].checkout = moment(c.data.timeTrackers[index].checkout).format("hh:mmA");
+                    }
+                    $window.location.reload();
+                });
+
             }
         });
     };
-    spUtil.recordWatch($scope, "x_snc_time_trackin_time_tracker", "active=true", function(response) {
-        spUtil.update($scope);
-    });
-
 };]]></client_script>
         <controller_as>c</controller_as>
-        <css>.tt-each-day {&#13;
+        <css>.text-time-right {&#13;
+    margin-left: 6%;&#13;
+    margin-right: 0%;&#13;
+}&#13;
+&#13;
+.disabled {&#13;
+	background-color: #E8F2F1 !important;&#13;
+  	color: #2A3E41 !important;&#13;
+}&#13;
+.add-time {&#13;
+	padding: 0px;&#13;
+	line-height: 8;&#13;
+  &#13;
+ &#13;
+  .btn{&#13;
+  	 background-color: $brand-primary;&#13;
+    	color:#fff;&#13;
+       height: 50px;&#13;
+    width: 100%;&#13;
+    font-size:20px;&#13;
+    &#13;
+  }&#13;
+}&#13;
+.text-right {&#13;
+	float: right;&#13;
+    font-size: 1.4em;&#13;
+    margin-top: -40px;&#13;
+}&#13;
+&#13;
+}&#13;
+.text-left {&#13;
+	float: left;&#13;
+  	font-size: 2.2em;&#13;
+  	margin-top: -5px;&#13;
+}&#13;
+&#13;
+   &#13;
+&#13;
+&#13;
+&#13;
+.tt-each-day {&#13;
   h3 {&#13;
-      margin-bottom: 20px;&#13;
+      margin-bottom: 00px;&#13;
       font-weight: bold;;&#13;
   }&#13;
+  &#13;
+  h4 {&#13;
+	  font-size: 18px;&#13;
+	  margin-bottom: 22px !important;&#13;
+  }&#13;
+  &#13;
   .each-td {&#13;
       height: 70px;&#13;
       width: 90%;&#13;
       padding: 20px;&#13;
       margin-left: auto;&#13;
       margin-right: auto;&#13;
-      background-color: $brand-primary;&#13;
+      background-color: #fff;&#13;
+	  border: 1px solid #1F8376;&#13;
       font-size: 24px;&#13;
       margin-bottom: 10px;&#13;
-      color: #fff;&#13;
-      border-radius: 6px;&#13;
+      color: #2E2E2E;&#13;
+      border-radius: 2px;&#13;
       .cal-icon {&#13;
-          margin-right: 10px;&#13;
+          margin-top: -6px;&#13;
+    padding: 3px;&#13;
+    border-radius: 50%;&#13;
+    background: teal;&#13;
+    color: white;&#13;
+    width: 40px;&#13;
+    float: left;&#13;
+    height: 40px;    &#13;
+        &#13;
+        &#13;
       }&#13;
       @media only screen and (min-device-width: 320px) and (max-device-width: 568px) and (-webkit-min-device-pixel-ratio: 2) {&#13;
 &#13;
-        height: 60px;&#13;
-        width: 100%;&#13;
-        padding: 15px;&#13;
-        margin-left: auto;&#13;
-        margin-right: auto;&#13;
-        background-color: #1F8476;&#13;
-        font-size: 17px;&#13;
-        margin-bottom: 10px;&#13;
-        color: #fff;&#13;
-        border-radius: 6px;&#13;
-        text-align: center;&#13;
+       height: 50px;&#13;
+    width: 100%;&#13;
+    padding: 15px;&#13;
+    margin-left: auto;&#13;
+    margin-right: auto;&#13;
+    background-color: #fff;&#13;
+    font-size: 16px;&#13;
+    font-weight: bold;&#13;
+    margin-bottom: 10px;&#13;
+    color: #000;&#13;
+    border-radius: 2px;&#13;
+    text-align: center;&#13;
+    border: 1px solid #1F8376;&#13;
       }&#13;
   }&#13;
 &#13;
@@ -75,8 +148,95 @@
   }&#13;
 }&#13;
 &#13;
+&#13;
 .trash-can {&#13;
 float: right;&#13;
+}&#13;
+  @media only screen and (min-device-width: 320px) and (max-device-width: 568px) and (-webkit-min-device-pixel-ratio: 2) {&#13;
+.cal-icon {&#13;
+	margin-top: -6px;&#13;
+    padding: 4px !important;&#13;
+    border-radius: 50%;&#13;
+    background: teal;&#13;
+    color: white;&#13;
+    width: 36px !important;&#13;
+    float: left;&#13;
+    height: 30px !important;&#13;
+    }&#13;
+.text-time-right{&#13;
+	margin-left: 2% !important;&#13;
+    margin-right: 1% !important;&#13;
+	}&#13;
+}&#13;
+&#13;
+.container {&#13;
+  display: block;&#13;
+  position: relative;&#13;
+  padding-left: 35px;&#13;
+  margin-bottom: 12px;&#13;
+  cursor: pointer;&#13;
+  font-size: 22px;&#13;
+  -webkit-user-select: none;&#13;
+  -moz-user-select: none;&#13;
+  -ms-user-select: none;&#13;
+  user-select: none;&#13;
+  text-align: left;&#13;
+  color: #1F8476;&#13;
+}&#13;
+&#13;
+/* Hide the browser's default checkbox */&#13;
+.container input {&#13;
+  position: absolute;&#13;
+  opacity: 0;&#13;
+  cursor: pointer;&#13;
+  height: 0;&#13;
+  width: 0;&#13;
+}&#13;
+&#13;
+/* Create a custom checkbox */&#13;
+.checkmark {&#13;
+  position: absolute;&#13;
+  top: 4px;&#13;
+  left: 0;&#13;
+  height: 25px;&#13;
+  width: 25px;&#13;
+  background-color: #eee;&#13;
+  border-radius: 4px;&#13;
+}&#13;
+&#13;
+/* On mouse-over, add a grey background color */&#13;
+.container:hover input ~ .checkmark {&#13;
+  background-color: #ccc;&#13;
+}&#13;
+&#13;
+/* When the checkbox is checked, add a blue background */&#13;
+.container input:checked ~ .checkmark {&#13;
+  background-color: #1F8476;&#13;
+}&#13;
+&#13;
+/* Create the checkmark/indicator (hidden when not checked) */&#13;
+.checkmark:after {&#13;
+  content: "";&#13;
+  position: absolute;&#13;
+  display: none;&#13;
+}&#13;
+&#13;
+/* Show the checkmark when checked */&#13;
+.container input:checked ~ .checkmark:after {&#13;
+  display: block;&#13;
+}&#13;
+&#13;
+/* Style the checkmark/indicator */&#13;
+.container .checkmark:after {&#13;
+  left: 9px;&#13;
+  top: 5px;&#13;
+  width: 5px;&#13;
+  height: 10px;&#13;
+  border: solid white;&#13;
+  border-width: 0 3px 3px 0;&#13;
+  -webkit-transform: rotate(45deg);&#13;
+  -ms-transform: rotate(45deg);&#13;
+  transform: rotate(45deg);&#13;
 }</css>
         <data_table>sp_instance</data_table>
         <demo_data/>
@@ -94,12 +254,15 @@ float: right;&#13;
         <public>false</public>
         <roles>x_snc_time_trackin.user</roles>
         <script><![CDATA[(function() {
+    data.imt = $sp.getParameter('imt');
     /* populate the 'data' object */
     /* e.g., data.table = $sp.getValue('table'); */
+    var imt = $sp.getParameter('imt');
+    data.imt = imt;
     var tdid = $sp.getParameter('tdid');
     data.timeTrackers = [];
-    $sp.log("each day log");
-    var gr = new GlideRecord('x_snc_time_trackin_time_tracker');
+    //  $sp.log("each day log");
+    var gr = new GlideRecordSecure('x_snc_time_trackin_time_tracker');
     //gr.addQuery('active',true);
     gr.addQuery('time_card_daily', tdid);
     gr.orderBy('check_in');
@@ -113,6 +276,11 @@ float: right;&#13;
         temp.type = gr.getDisplayValue('type');
         temp.imt = gr.getValue('parent');
         data.timeTrackers.push(temp);
+        data.status = gr.time_card_daily.u_status.getDisplayValue();
+		
+        if (data.status == "Reviewed") {
+            data.reviewed = true;
+        }
         data.imtName = gr.parent.name.getDisplayValue();
         data.totalHrs = gr.time_card_daily.time_worked.getDisplayValue();
         data.dateTd = gr.getDisplayValue('time_card_daily');
@@ -128,35 +296,57 @@ float: right;&#13;
         }
     }
 
+    if (input && input.cardsReviewed) {
+        var grReview = new GlideRecord('time_card_daily');
+        grReview.addQuery('sys_id', tdid);
+        grReview.query();
+        if (grReview.next()) {
+            grReview.u_status = "Reviewed";
+            grReview.update();
+        }
+    }
+
 })();]]></script>
         <servicenow>false</servicenow>
         <sys_class_name>sp_widget</sys_class_name>
         <sys_created_by>sush.chan</sys_created_by>
         <sys_created_on>2020-04-24 19:22:13</sys_created_on>
         <sys_id>49f03eb21b90d410de2fdb56ec4bcb79</sys_id>
-        <sys_mod_count>73</sys_mod_count>
+        <sys_mod_count>223</sys_mod_count>
         <sys_name>Time Tracking Logs Each Day</sys_name>
         <sys_package display_value="Time Tracking" source="x_snc_time_trackin">54476f311b14d410b22663142a4bcbc6</sys_package>
         <sys_policy/>
         <sys_scope display_value="Time Tracking">54476f311b14d410b22663142a4bcbc6</sys_scope>
         <sys_update_name>sp_widget_49f03eb21b90d410de2fdb56ec4bcb79</sys_update_name>
         <sys_updated_by>brett.karl</sys_updated_by>
-        <sys_updated_on>2020-05-01 13:39:04</sys_updated_on>
-        <template><![CDATA[<div class="tt-each-day col-md-12">
+        <sys_updated_on>2020-06-10 03:45:45</sys_updated_on>
+        <template><![CDATA[<div class="tt-each-day col-md-12 row">
 <!-- your widget template -->
-<div class="text-center"><h3><i class="fa fa-calendar" aria-hidden="true"></i> {{c.data.dateTd}}. Total {{c.data.totalHrs}} hrs</h3>
+<div class="text-center">
+   <div class="text-left"><a href="javascript:history.back()"><i class="fa fa-chevron-left"></i></a></div>
+  <h3>{{c.data.dateShort}}</h3>
+  <h4>{{c.data.dateTd}}</h4>
+
   <!-- <h3>Total {{c.data.totalHrs}} hrs</h3></div> -->
-  <div class="each-td" ng-repeat="td in c.data.timeTrackers">
-   <span class="cal-icon" ng-click="c.tdClicked(td)">
-      <i ng-if="td.type == 'Work'" class="fa fa-laptop" aria-hidden="true"></i>
-      <i ng-if="td.type == 'Lunch'" class="fa fa-cutlery" aria-hidden="true"></i>
-      <i ng-if="td.type == 'Travel'" class="fa fa-car" aria-hidden="true"></i>
+  <div class="each-td" ng-repeat="td in c.data.timeTrackers" ng-class="{'disabled': c.data.status == 'Reviewed'}">
+   <span class="cal-icon" ng-click="c.tdClicked(td)" ng-disabled="c.data.status == 'Reviewed'">
+      <i class="fa fa-laptop" aria-hidden="true"></i>
   </span>
-   <span ng-click="c.tdClicked(td)">{{td.type}}</span> - <span class="date">{{td.checkin}} to {{td.checkout}}</span> - <span>Total: {{td.duration}} hrs</span>
+   <span ng-click="c.tdClicked(td)" ng-disabled="c.data.status == 'Reviewed'">Work</span>: <span class="date">{{td.checkin}} to {{td.checkout}}</span>&nbsp;<span class="text-time-right">{{td.duration}} hrs</span>
     <div class="trash-can"><i class="fa fa-trash" ng-click="c.trashClicked(td,imt)"></i></div>
   </div>
   <div class="no-entries" ng-if="c.data.timeTrackers.length == 0">
     <p>No time entries found</p>
+  </div>
+  <label class="container"> Reviewed
+      <input class="form-check-input" type="checkbox" ng-checked={{c.data.reviewed}} name="xxx" ng-click="c.toggle()" ng-disabled="c.data.status == 'Reviewed'">
+      <span class="checkmark"></span>
+      </label>
+  <div class="text-right">
+    <b>Total: {{c.data.totalHrs}} hrs</b>
+  </div>
+    <div class="text-center add-time col-md-12" >
+    <a ng-href="?id=time_tracking_clock_in&imt={{c.data.imt}}" class="home-btn  btn btn-primary">Add Time</a>
   </div>
 </div>]]></template>
     </sp_widget>

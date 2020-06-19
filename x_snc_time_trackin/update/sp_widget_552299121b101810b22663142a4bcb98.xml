@@ -5,36 +5,50 @@
   /* widget controller */
   var c = this;
 
-  console.log(c.data.dailyTimeCard);
-  console.log(c.data.hasRole);
+//  console.log(c.data.dailyTimeCard);
+  //console.log(c.data.hasRole);
   c.date =  moment(c.data.date).format("dddd, MMMM Do YYYY");
 }]]></client_script>
         <controller_as>c</controller_as>
-        <css>.tt-home {
-  h3{
-    margin-bottom: 20px;
-    font-weight: bold;
-  }
-    .home-btn {
-      width:70%;
-      height:50px;
-
-      font-size: 24px;
-      @media only screen and (min-device-width: 320px) and (max-device-width: 568px) and (-webkit-min-device-pixel-ratio: 2) {
-        width:100%;
-        height: 100px;
-        margin-bottom: 30px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-      }
-
-      p{
-        margin-bottom: 0px;
-      }
-    }
-
-
+        <css>.tt-home {&#13;
+  h3{&#13;
+    margin-bottom: 20px;&#13;
+    font-weight: bold;&#13;
+   	font-size:48px;&#13;
+ &#13;
+  }&#13;
+  .imt-name{&#13;
+  	&#13;
+    	font-size:24px;&#13;
+      color:#9B9B9B;&#13;
+      text-transform: uppercase;&#13;
+   &#13;
+  }&#13;
+  .imt-btn{&#13;
+  	margin-top:35px;&#13;
+  }&#13;
+    .home-btn {&#13;
+      width:70%;&#13;
+      height:50px;&#13;
+	  font-weight:bold;&#13;
+      font-size: 24px;&#13;
+      margin-bottom: 25px;&#13;
+      @media only screen and (min-device-width: 320px) and (max-device-width: 568px) and (-webkit-min-device-pixel-ratio: 2) {&#13;
+        width:100%;&#13;
+        height: 100px;&#13;
+        &#13;
+        display: flex;&#13;
+        align-items: center;&#13;
+        justify-content: center;&#13;
+        font-weight:bold;&#13;
+      }&#13;
+&#13;
+      p{&#13;
+        margin-bottom: 0px;&#13;
+      }&#13;
+    }&#13;
+&#13;
+&#13;
 }</css>
         <data_table>sp_instance</data_table>
         <demo_data/>
@@ -51,35 +65,23 @@
         <option_schema/>
         <public>false</public>
         <roles>x_snc_time_trackin.user</roles>
-        <script><![CDATA[(function () {
-  /* populate the 'data' object */
-  /* e.g., data.table = $sp.getValue('table'); */
-
-  // data.hasRole = new TimeTrackerUtil().hasRole('3d77e7791bd0d410b22663142a4bcb9f');
-  // $sp.log(data.hasRole);
-  // if (data.hasRole) {
-
-    //var dateValue = new GlideDateTime();
-    //dateValue = dateValue.getLocalDate();
+        <script><![CDATA[(function() {
+    /* populate the 'data' object */
+    /* e.g., data.table = $sp.getValue('table'); */
+	data.reportRole = gs.getUser().hasRole('x_snc_time_trackin.reports');
     data.imt = $sp.getParameter('imt');
-//$sp.log(dateValue);
 
-
-    var gr = new GlideRecord('x_snc_time_trackin_time_tracker');
-    gr.addQuery('parent', data.imt);
-    gr.addQuery('user', gs.getUserID());
+    var gr = new GlideRecordSecure('sn_imt_imt_incidents');
+    gr.get(data.imt);
     gr.query();
-    $sp.log(gr.getRowCount());
     if (gr.next()) {
-      //gs.info(gr.getDisplayValue('u_parent'));
-      //gs.info(gr.getDisplayValue('date'));
-      //gs.info(gr.getDisplayValue('u_user'));
-      //data.dailyTimeCard = gr.sys_id.toString();
-      data.imt = gr.getValue('parent');
-      data.imtName = gr.parent.name.getDisplayValue();
-
+        data.imtName = gr.name.getDisplayValue();
     }
-  //}
+
+    var gdt = new GlideDateTime();
+    var month = gdt.getMonthUTC();
+    var dayofmonth = gdt.getDayOfMonthUTC();
+    data.pp = (dayofmonth <= 15) ? (month * 2) - 1 : month * 2;
 
 })();]]></script>
         <servicenow>false</servicenow>
@@ -87,24 +89,28 @@
         <sys_created_by>sush.chan</sys_created_by>
         <sys_created_on>2020-04-22 23:11:26</sys_created_on>
         <sys_id>552299121b101810b22663142a4bcb98</sys_id>
-        <sys_mod_count>55</sys_mod_count>
+        <sys_mod_count>77</sys_mod_count>
         <sys_name>Time Tracker Home</sys_name>
         <sys_package display_value="Time Tracking" source="x_snc_time_trackin">54476f311b14d410b22663142a4bcbc6</sys_package>
         <sys_policy/>
         <sys_scope display_value="Time Tracking">54476f311b14d410b22663142a4bcbc6</sys_scope>
         <sys_update_name>sp_widget_552299121b101810b22663142a4bcb98</sys_update_name>
-        <sys_updated_by>sush.chan</sys_updated_by>
-        <sys_updated_on>2020-04-29 22:30:26</sys_updated_on>
-        <template><![CDATA[<div class="col-md-12 text-center tt-home">
+        <sys_updated_by>brett.karl</sys_updated_by>
+        <sys_updated_on>2020-05-29 21:10:45</sys_updated_on>
+        <template><![CDATA[<div class="col-md-12 text-center tt-home row">
   <!-- our widget template -->
-  <h3>Manage your hours for IMT {{data.imtName}}</h3>
-  <div class="text-center col-md-12" >
-    <a ng-href="?id=time_tracking_clock_in&imt={{c.data.imt}}" class="home-btn btn btn-primary"><p>Clock in/out</p></a>
-    <a ng-href="?id=time_tracking_days_review&imt={{c.data.imt}}" class="home-btn btn btn-primary"><p>Reveiw Timecard</p></a>
+  <h3>Time Tracker</h3>
+  <p class="imt-name">{{data.imtName}}</p>
+  <div class="text-center col-md-12 imt-btn" >
+    <a ng-href="?id=time_tracking_clock_in&imt={{c.data.imt}}" class="home-btn btn btn-primary"><p>Enter Time</p></a>
+    <a ng-href="?id=time_tracking_days_review&imt={{c.data.imt}}&pp={{c.data.pp}}" class="home-btn btn btn-primary"><p>View Timecards</p></a>
+    <a ng-href="?id=imt_payroll_tracking&imt={{c.data.imt}}&pp={{c.data.pp}}" class="home-btn btn btn-primary" ng-show="data.reportRole"><p>Timesheet Reports</p></a>
   </div>
+  
   <!-- <div class="col-md-12 text-center" ng-if="!c.data.hasRole">
     <h4>Oops, looks like you dont have access to Time Tracker. Please contact your admin</h4>
   </div> -->
-</div>]]></template>
+</div>
+]]></template>
     </sp_widget>
 </record_update>

@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sysauto_indicator">
+    <sysauto_indicator action="INSERT_OR_UPDATE">
+        <active>true</active>
+        <address_list/>
+        <body/>
+        <breakdown/>
+        <breakdowns>true</breakdowns>
+        <business_calendar/>
+        <chart>true</chart>
+        <condition/>
+        <conditional>false</conditional>
+        <domain/>
+        <element/>
+        <entered_time/>
+        <group_list name="ERO v2">5b2765601bacd010b22663142a4bcbbe</group_list>
+        <include_with/>
+        <indicator display_value="Staff Working Per Day">8aa41fd61b301050b22663142a4bcb70</indicator>
+        <name>(IMT) Staff Working per Day</name>
+        <output_type>landscape</output_type>
+        <paper_size>Letter</paper_size>
+        <run_as display_value="Brett Karl">27579d2c1be09810de2fdb56ec4bcbbd</run_as>
+        <run_as_tz/>
+        <run_dayofmonth>1</run_dayofmonth>
+        <run_dayofweek/>
+        <run_period/>
+        <run_start>2020-05-29 20:55:38</run_start>
+        <run_time>1970-01-01 08:00:00</run_time>
+        <run_type>weekly</run_type>
+        <sys_class_name>sysauto_indicator</sys_class_name>
+        <sys_created_by>brett.karl</sys_created_by>
+        <sys_created_on>2020-05-29 20:57:38</sys_created_on>
+        <sys_id>8e16db0e1b89d450b22663142a4bcbc9</sys_id>
+        <sys_mod_count>1</sys_mod_count>
+        <sys_name>(IMT) Staff Working per Day</sys_name>
+        <sys_package display_value="Time Tracking" source="x_snc_time_trackin">54476f311b14d410b22663142a4bcbc6</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="Time Tracking">54476f311b14d410b22663142a4bcbc6</sys_scope>
+        <sys_update_name>sysauto_indicator_8e16db0e1b89d450b22663142a4bcbc9</sys_update_name>
+        <sys_updated_by>brett.karl</sys_updated_by>
+        <sys_updated_on>2020-06-01 01:37:41</sys_updated_on>
+        <time_zone/>
+        <title>IMT COVID-19: Staff Working per Day</title>
+        <upgrade_safe>false</upgrade_safe>
+        <user_list/>
+        <zip>false</zip>
+    </sysauto_indicator>
+</record_update>

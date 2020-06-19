@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sysauto_script">
+    <sysauto_script action="INSERT_OR_UPDATE">
+        <active>true</active>
+        <business_calendar/>
+        <condition/>
+        <conditional>false</conditional>
+        <entered_time>1970-01-01 14:00:00</entered_time>
+        <name>(IMT) Trigger notification reminder for late check in</name>
+        <run_as display_value="Brett Karl">27579d2c1be09810de2fdb56ec4bcbbd</run_as>
+        <run_as_tz/>
+        <run_dayofmonth>1</run_dayofmonth>
+        <run_dayofweek>1</run_dayofweek>
+        <run_period/>
+        <run_start>2020-05-05 05:28:26</run_start>
+        <run_time>1970-01-01 22:00:00</run_time>
+        <run_type>daily</run_type>
+        <script><![CDATA[//query x_snc_time_trackin_time_tracker
+//look for parent record = to sysid of time_card_daily
+//if time_tracker record exists don't send, if it doesnt exist, send event
+var grd = new GlideRecord('time_card_daily');
+grd.addEncodedQuery('dateONToday@javascript:gs.beginningOfToday()@javascript:gs.endOfToday()');
+grd.query();
+while (grd.next()) {
+    var gr = new GlideRecord('x_snc_time_trackin_time_tracker');
+    //gr.addEncodedQuery('time_card_daily.dateONToday@javascript:gs.beginningOfToday()@javascript:gs.endOfToday()');
+    gr.addEncodedQuery('time_card_daily=' + grd.sys_id);
+	gr.query();
+
+    if (!gr.next()) {
+        gs.eventQueue("x_snc_time_trackin.worker.hours.elapsed", grd, grd.u_user);
+    }
+}]]></script>
+        <sys_class_name>sysauto_script</sys_class_name>
+        <sys_created_by>brett.karl</sys_created_by>
+        <sys_created_on>2020-05-06 03:50:20</sys_created_on>
+        <sys_id>bedec5ee1becd410b22663142a4bcb36</sys_id>
+        <sys_mod_count>7</sys_mod_count>
+        <sys_name>(IMT) Trigger notification reminder for late check in</sys_name>
+        <sys_package display_value="Time Tracking" source="x_snc_time_trackin">54476f311b14d410b22663142a4bcbc6</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="Time Tracking">54476f311b14d410b22663142a4bcbc6</sys_scope>
+        <sys_update_name>sysauto_script_bedec5ee1becd410b22663142a4bcb36</sys_update_name>
+        <sys_updated_by>brett.karl</sys_updated_by>
+        <sys_updated_on>2020-06-01 01:37:54</sys_updated_on>
+        <time_zone>US/Pacific</time_zone>
+        <upgrade_safe>false</upgrade_safe>
+    </sysauto_script>
+</record_update>

@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sp_instance">
+    <sp_instance action="INSERT_OR_UPDATE">
+        <active>true</active>
+        <class_name/>
+        <color>default</color>
+        <css/>
+        <glyph/>
+        <id/>
+        <order>1</order>
+        <roles/>
+        <short_description/>
+        <size>md</size>
+        <sp_column display_value="1">e1730d0b1b345050b22663142a4bcbb8</sp_column>
+        <sp_widget display_value="IMT Payroll Tracking by User">27e073be1b705050b22663142a4bcba6</sp_widget>
+        <sys_class_name>sp_instance</sys_class_name>
+        <sys_created_by>brett.karl</sys_created_by>
+        <sys_created_on>2020-05-20 02:33:13</sys_created_on>
+        <sys_id>e9730d0b1b345050b22663142a4bcbf8</sys_id>
+        <sys_mod_count>1</sys_mod_count>
+        <sys_name>IMT Payroll Tracking by User</sys_name>
+        <sys_package display_value="Time Tracking" source="x_snc_time_trackin">54476f311b14d410b22663142a4bcbc6</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="Time Tracking">54476f311b14d410b22663142a4bcbc6</sys_scope>
+        <sys_update_name>sp_instance_e9730d0b1b345050b22663142a4bcbf8</sys_update_name>
+        <sys_updated_by>brett.karl</sys_updated_by>
+        <sys_updated_on>2020-05-20 02:33:48</sys_updated_on>
+        <title>IMT Payroll Tracking by User</title>
+        <url/>
+        <widget_parameters/>
+    </sp_instance>
+    <sys_translated_text action="delete_multiple" query="documentkey=e9730d0b1b345050b22663142a4bcbf8"/>
+</record_update>

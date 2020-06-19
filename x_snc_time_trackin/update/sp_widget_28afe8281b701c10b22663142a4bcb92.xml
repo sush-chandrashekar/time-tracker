@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sp_widget">
+    <sp_widget action="INSERT_OR_UPDATE">
+        <category>custom</category>
+        <client_script><![CDATA[function() {
+    /* widget controller */
+    var c = this;
+   
+};]]></client_script>
+        <controller_as>c</controller_as>
+        <css>.changesText {&#13;
+	line-height: 3;&#13;
+}&#13;
+.btn-reopen {&#13;
+	background-color: #fff !important;&#13;
+  	color: #1F8476 !important;&#13;
+}&#13;
+.confirmation {&#13;
+	color: #2A3E40 !important;&#13;
+    letter-spacing: 2px;&#13;
+    margin: 0px 52px;&#13;
+    line-height: 1.5;&#13;
+}&#13;
+.fa-check-circle {&#13;
+	font-size: 7em;&#13;
+  	color: #208375;&#13;
+    margin-top: 15%;&#13;
+}&#13;
+&#13;
+.add-time {&#13;
+	padding: 0px;&#13;
+	line-height: 3;&#13;
+  &#13;
+ &#13;
+  .btn{&#13;
+  	 background-color: $brand-primary;&#13;
+    	color:#fff;&#13;
+       height: 50px;&#13;
+    width: 100%;&#13;
+    font-size:20px;&#13;
+    &#13;
+  }&#13;
+}&#13;
+&#13;
+.tt-each-day {&#13;
+  h3 {&#13;
+      margin-bottom: 00px;&#13;
+      font-weight: bold;;&#13;
+  }&#13;
+  &#13;
+  h4 {&#13;
+	  font-size: 18px;&#13;
+	  margin-bottom: 22px !important;&#13;
+  }&#13;
+  &#13;
+  .each-td {&#13;
+      height: 70px;&#13;
+      width: 90%;&#13;
+      padding: 20px;&#13;
+      margin-left: auto;&#13;
+      margin-right: auto;&#13;
+      background-color: $brand-primary;&#13;
+      font-size: 24px;&#13;
+      margin-bottom: 10px;&#13;
+      color: #fff;&#13;
+      border-radius: 6px;&#13;
+      .cal-icon {&#13;
+          margin-top: -6px;&#13;
+    padding: 4px;&#13;
+    border-radius: 50%;&#13;
+    background: teal;&#13;
+    color: white;&#13;
+    width: 36px;&#13;
+    float: left;&#13;
+    height: 30px;&#13;
+      }&#13;
+      @media only screen and (min-device-width: 320px) and (max-device-width: 568px) and (-webkit-min-device-pixel-ratio: 2) {&#13;
+&#13;
+       height: 50px;&#13;
+    width: 100%;&#13;
+    padding: 15px;&#13;
+    margin-left: auto;&#13;
+    margin-right: auto;&#13;
+    background-color: #fff;&#13;
+    font-size: 16px;&#13;
+    font-weight: bold;&#13;
+    margin-bottom: 10px;&#13;
+    color: #000;&#13;
+    border-radius: 2px;&#13;
+    text-align: center;&#13;
+    border: 1px solid #1F8376;&#13;
+      }&#13;
+  }&#13;
+&#13;
+  .no-entries{&#13;
+    font-size: 24px;&#13;
+  }&#13;
+}</css>
+        <data_table>sp_instance</data_table>
+        <demo_data/>
+        <description/>
+        <docs/>
+        <field_list/>
+        <has_preview>false</has_preview>
+        <id>time_tracking_submission_confirmation</id>
+        <internal>false</internal>
+        <link><![CDATA[function link(scope, element, attrs, controller) {
+  
+}]]></link>
+        <name>Time Tracking Submission Confirmation</name>
+        <option_schema/>
+        <public>false</public>
+        <roles>x_snc_time_trackin.user</roles>
+        <script><![CDATA[(function() {
+   
+
+})();]]></script>
+        <servicenow>false</servicenow>
+        <sys_class_name>sp_widget</sys_class_name>
+        <sys_created_by>brett.karl</sys_created_by>
+        <sys_created_on>2020-05-12 06:41:46</sys_created_on>
+        <sys_id>28afe8281b701c10b22663142a4bcb92</sys_id>
+        <sys_mod_count>19</sys_mod_count>
+        <sys_name>Time Tracking Submission Confirmation</sys_name>
+        <sys_package display_value="Time Tracking" source="x_snc_time_trackin">54476f311b14d410b22663142a4bcbc6</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="Time Tracking">54476f311b14d410b22663142a4bcbc6</sys_scope>
+        <sys_update_name>sp_widget_28afe8281b701c10b22663142a4bcb92</sys_update_name>
+        <sys_updated_by>brett.karl</sys_updated_by>
+        <sys_updated_on>2020-06-10 04:10:24</sys_updated_on>
+        <template><![CDATA[<div class="tt-each-day col-md-12 row">
+<!-- your widget template -->
+<div class="text-center">
+<i class="fa fa-check-circle"></i>
+  <h1 class="confirmation">Thank you.<br>Your hours for this pay period have been submitted.</h1>
+  
+ <span class="changesText">If you need to make any changes after payroll has closed contact Finance/Payroll</span>
+ <div class="text-center add-time col-md-12" >
+  <a href="javascript:history.back()" class="home-btn btn btn-primary btn-reopen">Return to previous screen</a>
+</div>
+  </div>
+</div>]]></template>
+    </sp_widget>
+</record_update>

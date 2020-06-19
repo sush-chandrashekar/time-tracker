@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update sys_domain="global" table="pa_cubes">
+    <pa_cubes action="INSERT_OR_UPDATE">
+        <benchmarking>false</benchmarking>
+        <conditions table="x_snc_time_trackin_time_tracker">check_inONToday@javascript:gs.beginningOfToday()@javascript:gs.endOfToday()^check_outONToday@javascript:gs.beginningOfToday()@javascript:gs.endOfToday()<item endquery="false" field="check_in" goto="false" newquery="false" operator="ON" or="false" value="Today@javascript:gs.beginningOfToday()@javascript:gs.endOfToday()"/>
+            <item endquery="false" field="check_out" goto="false" newquery="false" operator="ON" or="false" value="Today@javascript:gs.beginningOfToday()@javascript:gs.endOfToday()"/>
+        </conditions>
+        <description/>
+        <facts_table>x_snc_time_trackin_time_tracker</facts_table>
+        <facts_table_pk/>
+        <facts_table_pktable/>
+        <facts_table_pkview/>
+        <frequency>10</frequency>
+        <name>(EMT) Time Tracker - Staff Working Per Day</name>
+        <report_source/>
+        <report_source_updated_at/>
+        <sys_class_name>pa_cubes</sys_class_name>
+        <sys_created_by>brett.karl</sys_created_by>
+        <sys_created_on>2020-05-18 05:11:34</sys_created_on>
+        <sys_domain>global</sys_domain>
+        <sys_domain_path>/</sys_domain_path>
+        <sys_id>a4d353d61b301050b22663142a4bcb46</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>(EMT) Time Tracker - Staff Working Per Day</sys_name>
+        <sys_overrides/>
+        <sys_package display_value="Time Tracking" source="x_snc_time_trackin">54476f311b14d410b22663142a4bcbc6</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="Time Tracking">54476f311b14d410b22663142a4bcbc6</sys_scope>
+        <sys_update_name>pa_cubes_a4d353d61b301050b22663142a4bcb46</sys_update_name>
+        <sys_updated_by>brett.karl</sys_updated_by>
+        <sys_updated_on>2020-05-18 05:11:34</sys_updated_on>
+    </pa_cubes>
+    <sys_translated_text action="delete_multiple" query="documentkey=a4d353d61b301050b22663142a4bcb46"/>
+</record_update>

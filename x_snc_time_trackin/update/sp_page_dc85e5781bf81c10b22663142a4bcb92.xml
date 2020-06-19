@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sp_page">
+    <sp_page action="INSERT_OR_UPDATE">
+        <category>custom</category>
+        <css/>
+        <draft>false</draft>
+        <dynamic_title_structure/>
+        <id>imt_time_tracking_home</id>
+        <internal>false</internal>
+        <public>false</public>
+        <roles>x_snc_time_trackin.user</roles>
+        <short_description>IMT Time Tracking Home</short_description>
+        <sys_class_name>sp_page</sys_class_name>
+        <sys_created_by>brett.karl</sys_created_by>
+        <sys_created_on>2020-05-13 05:15:37</sys_created_on>
+        <sys_id>dc85e5781bf81c10b22663142a4bcb92</sys_id>
+        <sys_mod_count>1</sys_mod_count>
+        <sys_name>imt_time_tracking_home</sys_name>
+        <sys_package display_value="Time Tracking" source="x_snc_time_trackin">54476f311b14d410b22663142a4bcbc6</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="Time Tracking">54476f311b14d410b22663142a4bcbc6</sys_scope>
+        <sys_update_name>sp_page_dc85e5781bf81c10b22663142a4bcb92</sys_update_name>
+        <sys_updated_by>brett.karl</sys_updated_by>
+        <sys_updated_on>2020-05-13 05:16:18</sys_updated_on>
+        <title>IMT Time Tracking Home</title>
+    </sp_page>
+    <sys_translated_text action="delete_multiple" query="documentkey=dc85e5781bf81c10b22663142a4bcb92"/>
+</record_update>

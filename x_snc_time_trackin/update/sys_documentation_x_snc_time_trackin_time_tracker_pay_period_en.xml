@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update>
+    <sys_documentation element="pay_period" label="Pay Period" language="en" table="x_snc_time_trackin_time_tracker">
+        <sys_documentation action="INSERT_OR_UPDATE">
+            <element>pay_period</element>
+            <help/>
+            <hint/>
+            <label>Pay Period</label>
+            <language>en</language>
+            <name>x_snc_time_trackin_time_tracker</name>
+            <plural>Pay Periods</plural>
+            <sys_class_name>sys_documentation</sys_class_name>
+            <sys_created_by>brett.karl</sys_created_by>
+            <sys_created_on>2020-05-08 16:41:40</sys_created_on>
+            <sys_id>c5921e131be85810b22663142a4bcb50</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_name>Pay Period</sys_name>
+            <sys_package display_value="Time Tracking" source="x_snc_time_trackin">54476f311b14d410b22663142a4bcbc6</sys_package>
+            <sys_policy/>
+            <sys_scope display_value="Time Tracking">54476f311b14d410b22663142a4bcbc6</sys_scope>
+            <sys_update_name>sys_documentation_x_snc_time_trackin_time_tracker_pay_period_en</sys_update_name>
+            <sys_updated_by>brett.karl</sys_updated_by>
+            <sys_updated_on>2020-05-08 16:41:40</sys_updated_on>
+            <url/>
+            <url_target/>
+        </sys_documentation>
+    </sys_documentation>
+</record_update>

@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sp_widget">
+    <sp_widget action="INSERT_OR_UPDATE">
+        <category>custom</category>
+        <client_script><![CDATA[function() {
+  /* widget controller */
+    var c = this;
+
+}]]></client_script>
+        <controller_as>c</controller_as>
+        <css>.text-center {&#13;
+	/*display: block !important;*/&#13;
+}&#13;
+.tt-home {&#13;
+  h3{&#13;
+    margin-bottom: 20px;&#13;
+    font-weight: bold;&#13;
+   	font-size:48px;&#13;
+  }&#13;
+    &#13;
+  div.title {&#13;
+    font-weight: bold;&#13;
+    font-size: 24px;&#13;
+    margin-left: auto;&#13;
+    margin-right: auto;&#13;
+}&#13;
+  .imt-name{&#13;
+  	&#13;
+    	font-size:24px;&#13;
+      color:#9B9B9B;&#13;
+      text-transform: uppercase;&#13;
+   &#13;
+  }&#13;
+  .imt-btn{&#13;
+  	margin-top:35px;&#13;
+  }&#13;
+    .home-btn {&#13;
+      width:70%;&#13;
+      height:150px;&#13;
+	  font-weight:bold;&#13;
+      font-size: 24px;&#13;
+      margin-bottom: 25px;&#13;
+      line-height: 2.5;&#13;
+      @media only screen and (min-device-width: 320px) and (max-device-width: 568px) and (-webkit-min-device-pixel-ratio: 2) {&#13;
+        width:100%;&#13;
+        height: 150px;&#13;
+        &#13;
+        display: flex;&#13;
+        align-items: center;&#13;
+        justify-content: center;&#13;
+        font-weight:bold;&#13;
+        line-height: 2.5;&#13;
+      }&#13;
+&#13;
+      p{&#13;
+        margin-bottom: 0px;&#13;
+      }&#13;
+    }&#13;
+}</css>
+        <data_table>sp_instance</data_table>
+        <demo_data/>
+        <description/>
+        <docs/>
+        <field_list/>
+        <has_preview>false</has_preview>
+        <id>imt_landing</id>
+        <internal>false</internal>
+        <link><![CDATA[function link(scope, element, attrs, controller) {
+  
+}]]></link>
+        <name>IMT Landing</name>
+        <option_schema/>
+        <public>false</public>
+        <roles>x_snc_time_trackin.user</roles>
+        <script><![CDATA[(function() {
+    /* populate the 'data' object */
+    /* e.g., data.table = $sp.getValue('table'); */
+
+    data.imtIncidents = [];
+    var gr = new GlideRecord('sn_imt_imt_incidents');
+    gr.addQuery('active', true);
+    gr.orderBy('start_date');
+    gr.query();
+    while (gr.next()) {
+        var temp = {};
+        temp.sys_id = gr.sys_id.toString();
+        temp.name = gr.name.getDisplayValue();
+        temp.type = gr.type.getDisplayValue();
+        temp.start_date = gr.getDisplayValue('start_date');
+        temp.end_date = gr.getDisplayValue('end_date');
+        data.imtIncidents.push(temp);
+    }
+})();]]></script>
+        <servicenow>false</servicenow>
+        <sys_class_name>sp_widget</sys_class_name>
+        <sys_created_by>brett.karl</sys_created_by>
+        <sys_created_on>2020-05-13 05:15:20</sys_created_on>
+        <sys_id>c34f9d741bf81c10b22663142a4bcb8b</sys_id>
+        <sys_mod_count>44</sys_mod_count>
+        <sys_name>IMT Landing</sys_name>
+        <sys_package display_value="Time Tracking" source="x_snc_time_trackin">54476f311b14d410b22663142a4bcbc6</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="Time Tracking">54476f311b14d410b22663142a4bcbc6</sys_scope>
+        <sys_update_name>sp_widget_c34f9d741bf81c10b22663142a4bcb8b</sys_update_name>
+        <sys_updated_by>brett.karl</sys_updated_by>
+        <sys_updated_on>2020-05-20 04:30:41</sys_updated_on>
+        <template><![CDATA[<div class="col-md-12 text-center tt-home row">
+  <!-- our widget template -->
+  <h3>Time Tracker</h3>
+  <div class="text-center col-md-6 col-sm-12 col-xs-12 imt-btn" ng-repeat="imt in c.data.imtIncidents">
+    <a ng-href="?id=time_tracking_home&imt={{imt.sys_id}}" class="home-btn btn btn-primary text-center">
+				<img ng-if="imt.type == 'Outbreak'" src="virus-light.png" width="50px"/>
+               	<img ng-if="imt.type == 'Environmental Health'" src="environment.png" width="50px"/>
+               	<img ng-if="imt.type == 'Natural  Disasters Responses'" src="natural.png" width="50px"/>
+               	<img ng-if="imt.type == 'Exercise'" src="exercise.png" width="30px"/>
+                <i ng-if="imt.type == 'Deployments'" class="fa fa-shield fa-3x" aria-hidden="true"></i>
+                <i ng-if="imt.type == 'Other'" class="fa fa-globe fa-3x" aria-hidden="true"></i>  
+    <div class="title">{{imt.name}}</div>
+    </a>     
+
+  </div>
+  
+</div>
+]]></template>
+    </sp_widget>
+</record_update>

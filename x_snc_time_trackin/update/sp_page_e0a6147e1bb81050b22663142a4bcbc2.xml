@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sp_page">
+    <sp_page action="INSERT_OR_UPDATE">
+        <category>custom</category>
+        <css/>
+        <draft>false</draft>
+        <dynamic_title_structure/>
+        <id>imt_payroll_tracking</id>
+        <internal>false</internal>
+        <public>false</public>
+        <roles/>
+        <short_description>IMT Payroll Tracking</short_description>
+        <sys_class_name>sp_page</sys_class_name>
+        <sys_created_by>brett.karl</sys_created_by>
+        <sys_created_on>2020-05-19 04:39:15</sys_created_on>
+        <sys_id>e0a6147e1bb81050b22663142a4bcbc2</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>imt_payroll_tracking</sys_name>
+        <sys_package display_value="Time Tracking" source="x_snc_time_trackin">54476f311b14d410b22663142a4bcbc6</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="Time Tracking">54476f311b14d410b22663142a4bcbc6</sys_scope>
+        <sys_update_name>sp_page_e0a6147e1bb81050b22663142a4bcbc2</sys_update_name>
+        <sys_updated_by>brett.karl</sys_updated_by>
+        <sys_updated_on>2020-05-19 04:39:15</sys_updated_on>
+        <title>IMT Payroll Tracking</title>
+    </sp_page>
+    <sys_translated_text action="delete_multiple" query="documentkey=e0a6147e1bb81050b22663142a4bcbc2"/>
+</record_update>

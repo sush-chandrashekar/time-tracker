@@ -1,0 +1,355 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sp_widget">
+    <sp_widget action="INSERT_OR_UPDATE">
+        <category>custom</category>
+        <client_script><![CDATA[function($location) {
+    /* widget controller */
+    var c = this;
+
+    c.tdClicked = function(td) {
+        $location.url('?id=time_tracking_log_review&tdid=' + td.sys_id + '&imt=' + c.data.imt);
+    }
+
+}]]></client_script>
+        <controller_as>c</controller_as>
+        <css>.btn-return {&#13;
+    margin: 15px auto;&#13;
+    width: 38%;&#13;
+    display: block;&#13;
+}&#13;
+.subtext{&#13;
+	color: #8E999B;&#13;
+    font-size: 18px;&#13;
+    font-family: inherit;&#13;
+    font-weight: 500;&#13;
+    line-height: 1.1;&#13;
+}&#13;
+.header {&#13;
+    margin-bottom: 20px;&#13;
+    font-weight: bold;&#13;
+    font-size: 24px;&#13;
+	color: #2e2e2e;&#13;
+	display: block;&#13;
+}&#13;
+.timecardFrame {&#13;
+    max-height: 385px;&#13;
+    overflow-x: auto;&#13;
+ 	margin: 13px 0;&#13;
+}&#13;
+&#13;
+.top-bottom {&#13;
+  box-shadow: 0 -5px 5px -5px #222, 0 5px 5px -5px #222;&#13;
+}&#13;
+.add-time {&#13;
+	padding: 0px;&#13;
+	line-height: 5;&#13;
+  &#13;
+ &#13;
+  .btn{&#13;
+  	 background-color: $brand-primary;&#13;
+    	color:#fff;&#13;
+       height: 50px;&#13;
+    width: 100%;&#13;
+    font-size:20px;&#13;
+    &#13;
+  }&#13;
+}&#13;
+&#13;
+.tt-days-listing {&#13;
+    h3 {&#13;
+        margin-bottom: 20px;&#13;
+        font-weight: bold;;&#13;
+      font-size: 24px;&#13;
+    }&#13;
+  &#13;
+  .flex{&#13;
+  	display: flex;&#13;
+    align-items: center;&#13;
+    justify-content: space-between;&#13;
+  }&#13;
+    .each-td-inactive {&#13;
+	background-color: #E8F2F1 !important;&#13;
+  	color: #2A3E41 !important;&#13;
+}&#13;
+  .each-td {&#13;
+	height: 70px;&#13;
+	width: 90%;&#13;
+	padding: 20px;&#13;
+	margin-left: auto;&#13;
+	margin-right: auto;&#13;
+	background-color: #fff;&#13;
+    font-size: 16px;&#13;
+    font-weight: bold;&#13;
+    margin-bottom: 10px;&#13;
+    color: #000;&#13;
+    border-radius: 2px;&#13;
+    text-align: center;&#13;
+    border: 1px solid #1F8376;&#13;
+        .cal-icon {&#13;
+            margin-right: 10px;&#13;
+        }&#13;
+        @media only screen and (min-device-width: 320px) and (max-device-width: 568px) and (-webkit-min-device-pixel-ratio: 2) {&#13;
+&#13;
+         height: 50px;&#13;
+    width: 100%;&#13;
+    padding: 15px;&#13;
+    margin-left: auto;&#13;
+    margin-right: auto;&#13;
+    background-color: #fff;&#13;
+    font-size: 16px;&#13;
+    font-weight: bold;&#13;
+    margin-bottom: 10px;&#13;
+    color: #000;&#13;
+    border-radius: 2px;&#13;
+    text-align: center;&#13;
+    border: 1px solid #1F8376;&#13;
+        }&#13;
+&#13;
+    }&#13;
+}&#13;
+     @media only screen and (min-device-width: 320px) and (max-device-width: 568px) and (-webkit-min-device-pixel-ratio: 2) {&#13;
+.text-left {&#13;
+	float: left !important;&#13;
+  	font-size: 2.2em !important;&#13;
+  	margin-top: -2% !important;&#13;
+}&#13;
+.text-right {&#13;
+	float: right !important;&#13;
+  	font-size: 2.2em !important;&#13;
+  	margin-top: -27.9% !important;&#13;
+ }    &#13;
+}&#13;
+&#13;
+.text-left {&#13;
+	float: left;&#13;
+  	font-size: 2.2em;&#13;
+}&#13;
+&#13;
+@media only screen &#13;
+  and (min-device-width: 375px) &#13;
+  and (max-device-width: 667px) &#13;
+  and (-webkit-min-device-pixel-ratio: 2)&#13;
+  and (orientation: landscape) { &#13;
+.text-right {&#13;
+	float: right;&#13;
+  	font-size: 2.2em;&#13;
+   	margin-top: -13.1%;&#13;
+}&#13;
+}&#13;
+&#13;
+.text-right {&#13;
+	text-align: right;&#13;
+    float: right;&#13;
+    font-size: 2.2em;&#13;
+    margin-top: -89px;&#13;
+}&#13;
+.text-center {&#13;
+	display: block;&#13;
+}&#13;
+&#13;
+table.paleBlueRows {&#13;
+  border: 1px solid #000;&#13;
+  text-align: center;&#13;
+  border-collapse: collapse;&#13;
+  margin-left: auto;&#13;
+  margin-right: auto;&#13;
+}&#13;
+table.paleBlueRows td, table.paleBlueRows th {&#13;
+ /* border: 1px solid #000;*/&#13;
+  padding: 3px 2px;&#13;
+}&#13;
+table.paleBlueRows tbody td {&#13;
+	font-size: 18px;&#13;
+    padding: 10px;&#13;
+}&#13;
+table.paleBlueRows tr:nth-child(even) {&#13;
+  background: #1a6f64;&#13;
+}&#13;
+table.paleBlueRows thead {&#13;
+  background: #1a6f64;&#13;
+  border-bottom: 1px solid #000;&#13;
+}&#13;
+table.paleBlueRows thead th {&#13;
+	font-size: 21px;&#13;
+    font-weight: bold;&#13;
+    color: #FFFFFF;&#13;
+    text-align: center;&#13;
+    border-left: 1px solid #000;&#13;
+    padding: 2px 7px;&#13;
+}&#13;
+table.paleBlueRows thead th:first-child {&#13;
+  border-left: none;&#13;
+}&#13;
+&#13;
+table.paleBlueRows tfoot {&#13;
+  font-size: 14px;&#13;
+  font-weight: bold;&#13;
+  color: #333333;&#13;
+  background: #8BBEB7;&#13;
+  border-top: 3px solid #444444;&#13;
+}&#13;
+table.paleBlueRows tfoot td {&#13;
+	font-size: 18px;&#13;
+    padding: 5px 10px;&#13;
+}</css>
+        <data_table>sp_instance</data_table>
+        <demo_data/>
+        <description/>
+        <docs/>
+        <field_list/>
+        <has_preview>false</has_preview>
+        <id>imt_payroll_tracking_by_user</id>
+        <internal>false</internal>
+        <link><![CDATA[function link(scope, element, attrs, controller) {
+ 
+}]]></link>
+        <name>IMT Payroll Tracking by User</name>
+        <option_schema/>
+        <public>false</public>
+        <roles>x_snc_time_trackin.user,x_snc_time_trackin.reports</roles>
+        <script><![CDATA[(function() {
+    /* populate the 'data' object */
+    /* e.g., data.table = $sp.getValue('table'); */
+    var imt = $sp.getParameter('imt');
+    data.imt = imt;
+    var pp = $sp.getParameter('pp');
+    data.pp = parseInt(pp);
+    var user = $sp.getParameter('user');
+    data.user = user;
+	
+    data.payrollinfo = [];
+	//Name & total hoursr per pay period
+    var gr = new GlideAggregate('time_card_daily');
+    gr.addQuery('u_parent', imt);
+    gr.addQuery('u_pay_period', pp);
+	gr.addQuery('u_user', user);	
+    gr.addAggregate('SUM', 'time_worked');
+    gr.orderBy('u_user');
+    gr.setGroup(false);
+    gr.query();
+    while (gr.next()) {
+        var temp = {};
+        temp.sys_id = gr.sys_id.toString();
+        temp.imt = imt;
+        temp.date = gr.getDisplayValue('date');
+        temp.name = gr.getDisplayValue('u_user');
+        temp.hours = gr.getAggregate('SUM', 'time_worked');
+        data.payrollinfo.push(temp);
+        data.imtName = gr.u_parent.name.getDisplayValue();
+    }
+
+	//hours total for date
+    data.payrollinfodetails = [];
+    var gr1 = new GlideAggregate('time_card_daily');
+    gr1.addQuery('u_parent', imt);
+    gr1.addQuery('u_pay_period', pp);
+	gr1.addQuery('u_user', user);	
+    gr1.addAggregate('SUM', 'time_worked');
+	//gr1.groupBy('u_user');
+	gr1.orderBy('date');
+    gr1.groupBy("date");
+    gr1.setGroup(true);
+    gr1.query();
+    while (gr1.next()) {
+        var temp1 = {};
+        temp1.sys_id = gr1.sys_id.toString();
+        temp1.imt = imt;
+        temp1.date = gr1.getDisplayValue('date');
+        temp1.name = gr1.getDisplayValue('u_user');
+        temp1.hours = gr1.getAggregate('SUM', 'time_worked');
+        data.payrollinfodetails.push(temp1);
+        data.imtName1 = gr1.u_parent.name.getDisplayValue();
+    }
+
+
+    var sc = new GlideAggregate('time_card_daily');
+    sc.addQuery('u_parent', imt);
+    sc.addQuery('u_pay_period', pp);
+    sc.addAggregate('SUM', 'time_worked');
+    sc.setGroup(false);
+    sc.query();
+
+    while (sc.next()) {
+        data.totalHours = sc.getAggregate('SUM', 'time_worked');
+    }
+
+    //Obtain full month for styliing start
+    data.monthNames = ["January", "February", "March", "April", "May", "June",
+        "July", "August", "September", "October", "November", "December"
+    ];
+
+    var themonth = (data.pp % 2 == 0) ? (data.pp / 2) : ((data.pp + 1) / 2);
+    var lastday = new Date(2020, themonth, 0).getDate();
+    var dt = new Date(2020, themonth, 0);
+
+    function full_month(dt) {
+        return data.monthNames[dt.getMonth()];
+    }
+
+    var theyear = new Date(2020, themonth, 0).getFullYear();
+    var theday = (data.pp % 2 == 0) ? ('16 - ' + lastday) : ('1 - 15');
+    data.ppDate = full_month(dt) + ' ' + theday + ', ' + theyear;
+    //Obtain full month for styliing end
+
+})();]]></script>
+        <servicenow>false</servicenow>
+        <sys_class_name>sp_widget</sys_class_name>
+        <sys_created_by>brett.karl</sys_created_by>
+        <sys_created_on>2020-05-19 20:32:37</sys_created_on>
+        <sys_id>27e073be1b705050b22663142a4bcba6</sys_id>
+        <sys_mod_count>29</sys_mod_count>
+        <sys_name>IMT Payroll Tracking by User</sys_name>
+        <sys_package display_value="Time Tracking" source="x_snc_time_trackin">54476f311b14d410b22663142a4bcbc6</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="Time Tracking">54476f311b14d410b22663142a4bcbc6</sys_scope>
+        <sys_update_name>sp_widget_27e073be1b705050b22663142a4bcba6</sys_update_name>
+        <sys_updated_by>brett.karl</sys_updated_by>
+        <sys_updated_on>2020-05-27 03:15:29</sys_updated_on>
+        <template><![CDATA[<div class="col-md-12 tt-days-listing row">
+  <!-- your widget template -->
+  <div class="text-center">    
+       <div class="text-left"><a href="?id=imt_payroll_tracking_user&imt={{c.data.imt}}&pp={{c.data.pp -1}}&user={{c.data.user}}"><i class="fa fa-chevron-left"></i></a></div>
+    <span class="header">Timesheets
+      <br>
+      <span class="subtext">{{data.ppDate}}</span>
+    </span>
+     <div class="text-right"><a href="?id=imt_payroll_tracking_user&imt={{c.data.imt}}&pp={{c.data.pp +1 }}&user={{c.data.user}}"><i class="fa fa-chevron-right"></i></a></div>
+  </div>
+
+  <div class="payroll-tracking">
+<table class="paleBlueRows">
+  
+<thead>
+<tr>
+<th>Employee</th>
+<th ng-repeat="time in c.data.payrollinfodetails">{{time.date | date : "EEE - MMM d, y"}}</th>
+  <th>Hours Total</th>
+</tr>
+</thead>
+  
+<tbody ng-show="c.data.payrollinfodetails.length > 0">
+<tr ng-repeat="person in c.data.payrollinfo">
+<td>{{person.name}}</td>
+<td ng-repeat="time in c.data.payrollinfodetails">{{time.hours}}</td>
+<td>{{person.hours}}</td>
+</tr>
+</tbody>
+
+<tbody ng-show="c.data.payrollinfodetails.length < 1">
+<tr>
+<td colspan="3">No entries for this pay period</td>
+</tr>
+</tbody>
+  
+<tfoot>
+<tr>
+<td>&nbsp;</td>
+<td ng-repeat="time in c.data.payrollinfodetails">&nbsp;</td>
+<td></td>
+</tr>
+</tfoot>
+  
+</table>  
+  </div>
+  <a ng-href="?id=imt_payroll_tracking&imt={{c.data.imt}}&pp={{c.data.pp}}"><div class="btn btn-primary btn-return text-lg">Return to timesheet</div></a>]]></template>
+    </sp_widget>
+</record_update>

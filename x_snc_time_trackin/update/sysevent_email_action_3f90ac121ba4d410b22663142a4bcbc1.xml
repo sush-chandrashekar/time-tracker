@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update sys_domain="global" table="sysevent_email_action">
+    <sysevent_email_action action="INSERT_OR_UPDATE">
+        <action_insert>false</action_insert>
+        <action_update>false</action_update>
+        <active>true</active>
+        <advanced_condition/>
+        <affected_field_on_event/>
+        <category display_value="Time Tracker" name="Time Tracker">7ed0a0521ba4d410b22663142a4bcbb5</category>
+        <collection>time_card_daily</collection>
+        <condition/>
+        <content_type>text/html</content_type>
+        <default_interval/>
+        <description/>
+        <digest_from/>
+        <digest_html/>
+        <digest_reply_to/>
+        <digest_separator_html><![CDATA[<p>&nbsp;</p>
+<hr />
+<p>&nbsp;</p>]]></digest_separator_html>
+        <digest_separator_text><![CDATA[\n--------------------------------------------------------------------------------\n]]></digest_separator_text>
+        <digest_subject/>
+        <digest_template/>
+        <digest_text/>
+        <digestable>false</digestable>
+        <event_name>x_snc_time_trackin.worker.scheduled</event_name>
+        <event_parm_1>true</event_parm_1>
+        <event_parm_2>false</event_parm_2>
+        <exclude_delegates>false</exclude_delegates>
+        <force_delivery>false</force_delivery>
+        <from/>
+        <generation_type>event</generation_type>
+        <importance/>
+        <include_attachments>false</include_attachments>
+        <item>event.parm1</item>
+        <item_table/>
+        <mandatory>false</mandatory>
+        <message/>
+        <message_html><![CDATA[<p>Hi ${u_user.first_name},</p>
+<p>You have been scheduled to work between ${u_parent.start_date} - ${u_parent.end_date}. Remember to check in and out for work, lunch and travel.</p>
+<p><a title="Time Tracker Portal" href="https://dohero2demo.service-now.com/tt?id=time_tracking_home&amp;imt=d34e1e555323001054acddeeff7b128d">Time Tracker Portal</a></p>
+<p>thank you!</p>]]></message_html>
+        <message_list/>
+        <message_text/>
+        <name>Check in/out reminder for workers</name>
+        <omit_watermark>false</omit_watermark>
+        <order>100</order>
+        <push_message_only>false</push_message_only>
+        <recipient_fields/>
+        <recipient_groups/>
+        <recipient_users/>
+        <reply_to/>
+        <send_self>true</send_self>
+        <sms_alternate/>
+        <style/>
+        <subject>State of WA: Remember to check in/out for work, lunch, and travel</subject>
+        <subscribable>false</subscribable>
+        <sys_class_name>sysevent_email_action</sys_class_name>
+        <sys_created_by>brett.karl</sys_created_by>
+        <sys_created_on>2020-05-05 05:53:24</sys_created_on>
+        <sys_domain>global</sys_domain>
+        <sys_domain_path>/</sys_domain_path>
+        <sys_id>3f90ac121ba4d410b22663142a4bcbc1</sys_id>
+        <sys_mod_count>4</sys_mod_count>
+        <sys_name>Check in/out reminder for workers</sys_name>
+        <sys_overrides/>
+        <sys_package display_value="Time Tracking" source="x_snc_time_trackin">54476f311b14d410b22663142a4bcbc6</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="Time Tracking">54476f311b14d410b22663142a4bcbc6</sys_scope>
+        <sys_update_name>sysevent_email_action_3f90ac121ba4d410b22663142a4bcbc1</sys_update_name>
+        <sys_updated_by>brett.karl</sys_updated_by>
+        <sys_updated_on>2020-05-06 03:06:23</sys_updated_on>
+        <sys_version>2</sys_version>
+        <template/>
+        <type>email</type>
+        <weight>0</weight>
+    </sysevent_email_action>
+</record_update>

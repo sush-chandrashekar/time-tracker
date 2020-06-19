@@ -1,213 +1,314 @@
 <?xml version="1.0" encoding="UTF-8"?><record_update table="sp_widget">
     <sp_widget action="INSERT_OR_UPDATE">
         <category>custom</category>
-        <client_script><![CDATA[function ($scope, spUtil, $location) {
+        <client_script><![CDATA[function ($scope, spUtil, $location, $window) {
   var c = this;
-c.type= "";
-c.note="";
+ // c.type = "";
+ // c.note = "";
   /* Bindable functions
  -----------------------------------------------*/
-$scope.endDateBeforeRender = endDateBeforeRender
-$scope.endDateOnSetTime = endDateOnSetTime
-$scope.startDateBeforeRender = startDateBeforeRender
-$scope.startDateOnSetTime = startDateOnSetTime
+  $scope.endDateBeforeRender = endDateBeforeRender;
+  $scope.endDateOnSetTime = endDateOnSetTime;
+  $scope.startDateBeforeRender = startDateBeforeRender;
+  $scope.startDateOnSetTime = startDateOnSetTime;
 
+  $scope.endDateBeforeRenderLunch = endDateBeforeRenderLunch;
+  $scope.endDateOnSetTimeLunch = endDateOnSetTimeLunch;
+  $scope.startDateBeforeRenderLunch = startDateBeforeRenderLunch;
+  $scope.startDateOnSetTimeLunch = startDateOnSetTimeLunch;
 
-console.log(c.data.timeTr);
+  //console.log(c.data.timeTr);
 
-c.submit = function(){
-    if(!c.type){
-      spUtil.addErrorMessage("Please Choose a Type");
-    } else{
+  c.submit = function () {
+//     if (!c.type) {
+//       spUtil.addErrorMessage("Please Choose a Type");
+//     } else {
       c.server.get({
         startDate: moment($scope.dateRangeStart).format("YYYY-MM-DD HH:mm:ss"),
         endDate: moment($scope.dateRangeEnd).format("YYYY-MM-DD HH:mm:ss"),
-        justDate: moment($scope.dateRangeStart).format("YYYY-MM-DD"),
-        note: c.note || '',
-        type: c.type		  
+        startDateLunch: moment($scope.dateRangeStartLunch).format("YYYY-MM-DD HH:mm:ss"),
+        endDateLunch: moment($scope.dateRangeEndLunch).format("YYYY-MM-DD HH:mm:ss"),		  
+        justDate: moment($scope.dateRangeStart).format("YYYY-MM-DD")
+        //note: c.note || '',
+        //type: c.type
       }).then(function (r) {
-          if(r.data.returnID){
-            spUtil.addInfoMessage("Time Logged in successfully!");
-            $location.url('?id=time_tracking_days_review&imt='+r.data.imt);
-          }
+        if (r.data.returnID) {
+          spUtil.addInfoMessage("Time Logged in successfully!");
+          //$location.url('?id=time_tracking_days_review&imt=' + r.data.imt);
+          $window.history.back();
+        }
 
       });
     }
-}
-
-if(c.data.tr){
-  $scope.dateRangeStart = moment(c.data.timeTr.checkin).format("YYYY-MM-DD HH:mm:ss");
-  $scope.dateRangeEnd = moment(c.data.timeTr.checkout).format("YYYY-MM-DD HH:mm:ss");
   
-	c.type = c.data.timeTr.type;
-  c.note = c.data.timeTr.note || '';
-} else{
-  $scope.dateRangeStart = new Date;
-  $scope.dateRangeEnd = new Date;
-  //$scope.dateRangeStart = moment().format('YYYY-MM-DD HH:mm:ss');
-  //$scope.dateRangeEnd = moment().format('YYYY-MM-DD HH:mm:ss');
-}
+
+  if (c.data.tr) {
+	$scope.dateRangeStart = moment(c.data.timeTr.checkin).format("YYYY-MM-DD HH:mm:ss");
+    $scope.dateRangeEnd = moment(c.data.timeTr.checkout).format("YYYY-MM-DD HH:mm:ss");
+	$scope.dateRangeStartLunch = moment(c.data.timeTr.lunchout).format("YYYY-MM-DD HH:mm:ss");
+    $scope.dateRangeEndLunch = moment(c.data.timeTr.lunchin).format("YYYY-MM-DD HH:mm:ss");	  
+
+    //c.type = c.data.timeTr.type;
+    //c.note = c.data.timeTr.note || '';
+  } else {
+    $scope.dateRangeStart = new Date;
+    $scope.dateRangeEnd = new Date;
+    $scope.dateRangeStartLunch = new Date;
+    $scope.dateRangeEndLunch = new Date;	  
+    //$scope.dateRangeStart = moment().format('YYYY-MM-DD HH:mm:ss');
+    //$scope.dateRangeEnd = moment().format('YYYY-MM-DD HH:mm:ss');
+  }
 
 
 
 
-function startDateOnSetTime () {
+  function startDateOnSetTime() {
 
-  console.log($scope.dateRangeStart);
-  $scope.$broadcast('start-date-changed');
-}
+    //console.log($scope.dateRangeStart);
+    $scope.$broadcast('start-date-changed');
+  }
 
-function endDateOnSetTime () {
-  console.log($scope.dateRangeEnd);
-  $scope.$broadcast('end-date-changed');
-}
+  function endDateOnSetTime() {
+    //console.log($scope.dateRangeEnd);
+    $scope.$broadcast('end-date-changed');
+  }
+	
+	 function startDateOnSetTimeLunch() {
 
-function startDateBeforeRender ($dates) {
+    //console.log($scope.dateRangeStart);
+    $scope.$broadcast('start-date-changed-lunch');
+  }
 
-  // if ($scope.dateRangeEnd) {
-  //   var activeDate = moment($scope.dateRangeEnd);
-
-  //   $dates.filter(function (date) {
-  //     return date.localDateValue() >= activeDate.valueOf()
-  //   }).forEach(function (date) {
-  //     date.selectable = false;
-  //   })
-  // }
+  function endDateOnSetTimeLunch() {
+    //console.log($scope.dateRangeEnd);
+    $scope.$broadcast('end-date-changed-lunch');
+  }
 
 
-}
-
-function calcRange(date, activeDate, nextDay){
-  if(date.localDateValue() <= activeDate.valueOf()){
+  function calcRangeTwo(date, imtActivatedStart, imtActivatedEnd) {
+    if (date.localDateValue() <= imtActivatedStart.valueOf()) {
       return true;
-  } else if(date.localDateValue() > nextDay.getTime()){
-    return true;
+    } else if (date.localDateValue() > imtActivatedEnd.getTime()) {
+      return true;
+    }
   }
-}
 
-function endDateBeforeRender ($view, $dates, $leftDate, $upDate, $rightDate) {
 
-  //$scope.dateRangeEnd = $scope.dateRangeStart;
-  if ($scope.dateRangeStart) {
-	  //
-    var nextDay = new Date($scope.dateRangeStart);
-    nextDay.setDate(nextDay.getDate() + 1);
-    nextDay.setHours(0,0,0,0);
-    nextDay = moment(nextDay).subtract(1, 'minutes').toDate();
+  function startDateBeforeRender($dates) {
+   //Enable only dates activated for in the date time picker
+    if (c.data.imtActivatedEnd && c.data.imtActivatedStart) {
+      var imtActivatedStart = new Date(c.data.imtActivatedStart);
+      imtActivatedStart.setHours(23, 59, 59, 59);
 
-    var activeDate = moment($scope.dateRangeStart).subtract(1, $view).add(1, 'minute');
+      var imtActivatedEnd = new Date(c.data.imtActivatedEnd+" 23:59");
+      //imtActivatedEnd.setHours(23, 59, 59, 59);
 
-    $dates.filter(function (date) {
-      return (calcRange(date, activeDate, nextDay));
-    }).forEach(function (date) {
-      date.selectable = false;
-    });
+      $dates.filter(function (date) {
+        return (calcRangeTwo(date, imtActivatedStart, imtActivatedEnd));
+      }).forEach(function (date) {
+        date.selectable = false;
+      });
+    }
+
   }
-}
+	
+  function startDateBeforeRenderLunch($dates) {
+   //Enable only dates activated for in the date time picker
+    if (c.data.imtActivatedEndLunch && c.data.imtActivatedStartLunch) {
+      var imtActivatedStartLunch = new Date(c.data.imtActivatedStartLunch);
+      imtActivatedStartLunch.setHours(23, 59, 59, 59);
+
+      var imtActivatedEndLunch = new Date(c.data.imtActivatedEndLunch+" 23:59");
+      //imtActivatedEnd.setHours(23, 59, 59, 59);
+
+      $dates.filter(function (date) {
+        return (calcRangeTwo(date, imtActivatedStartLunch, imtActivatedEndLunch));
+      }).forEach(function (date) {
+        date.selectable = false;
+      });
+    }
+
+  }	
+	
+
+  function calcRange(date, activeDate, nextDay) {
+    if (date.localDateValue() <= activeDate.valueOf()) {
+      return true;
+    } else if (date.localDateValue() > nextDay.getTime()) {
+      return true;
+    }
+  }
+
+  function endDateBeforeRenderLunch($view, $dates, $leftDate, $upDate, $rightDate) {
+
+    //$scope.dateRangeEnd = $scope.dateRangeStart;
+    if ($scope.dateRangeStartLunch) {
+      //
+      var nextDay = new Date($scope.dateRangeStartLunch);
+      nextDay.setDate(nextDay.getDate() + 1);
+      nextDay.setHours(0, 0, 0, 0);
+      nextDay = moment(nextDay).subtract(1, 'minutes').toDate();
+
+      var activeDate = moment($scope.dateRangeStartLunch).subtract(1, $view).add(1, 'minute');
+
+      $dates.filter(function (date) {
+        return (calcRange(date, activeDate, nextDay));
+      }).forEach(function (date) {
+        date.selectable = false;
+      });
+    }
+  }	
+	
+  function endDateBeforeRender($view, $dates, $leftDate, $upDate, $rightDate) {
+
+    //$scope.dateRangeEnd = $scope.dateRangeStart;
+    if ($scope.dateRangeStart) {
+      //
+      var nextDay = new Date($scope.dateRangeStart);
+      nextDay.setDate(nextDay.getDate() + 1);
+      nextDay.setHours(0, 0, 0, 0);
+      nextDay = moment(nextDay).subtract(1, 'minutes').toDate();
+
+      var activeDate = moment($scope.dateRangeStart).subtract(1, $view).add(1, 'minute');
+
+      $dates.filter(function (date) {
+        return (calcRange(date, activeDate, nextDay));
+      }).forEach(function (date) {
+        date.selectable = false;
+      });
+    }
+  }
 
 
 }]]></client_script>
         <controller_as>c</controller_as>
-        <css>.form-group.required .control-label:after {
-  content:"*";
-  color:red;
-}
-.select-form{
-  min-height: 75px;
-}
-.select-div {
-  position: absolute;
-  width: 90%;
-
-  select {
-
-    border-radius: 3px;
-    font-size: 16px;
-    color: gray;
-    height: 42px;
-    appearance: none;
-    -moz-appearance: none;
-    -webkit-appearance: none;
-
-    &amp;:focus {
-      outline: none;
-      box-shadow: none;
-      border: solid 1px grey;
-    }
-  }
-
-  .select-side {
-    &amp;:before {
-      border-left: solid 1px lightgrey;
-      content : "";
-      position: absolute;
-      left    : 0;
-      bottom  : 0;
-      height  : 100%;
-      width   : 1px;  /* or 100px */
-    }
-
-    width: 40px;
-    position: absolute;
-    top: 0px;
-    background-color: #f1f1f1;
-    height: 100%;
-    left: 88%;
-    border-radius: 0px 3px 3px 0px;
-    border-right: solid 1px #ccc;
-    border-top: solid 1px #ccc;
-    border-bottom: solid 1px #ccc;
-    pointer-events:none;
-
-    i {
-      &amp;.blue {
-        color: #000;
-      }
-
-      left: 30%;
-      top: 12px;
-    }
-  }
-}
-
-h3{
-  margin-bottom: 20px;
-  font-weight: bold;
-}
-
-input.cal-input{
-  @media only screen and (min-device-width: 320px) and (max-device-width: 568px) and (-webkit-min-device-pixel-ratio: 2) {
-    height: 50px;
-    font-size: 20px;
-  }
-}
-
-label{
-  @media only screen and (min-device-width: 320px) and (max-device-width: 568px) and (-webkit-min-device-pixel-ratio: 2) {
-
-    font-size: 20px;
-  }
-}
-
-select{
-  @media only screen and (min-device-width: 320px) and (max-device-width: 568px) and (-webkit-min-device-pixel-ratio: 2) {
-
-    height: 45px;
-  }
-}
-
-.btn-primary{
-  @media only screen and (min-device-width: 320px) and (max-device-width: 568px) and (-webkit-min-device-pixel-ratio: 2) {
-    height: 50px;
-    font-size: 18px;
-    width: 100%;
-    margin-top: 20px;
-  }
-}
-.dropdown-menu{
-  @media only screen and (min-device-width: 320px) and (max-device-width: 568px) and (-webkit-min-device-pixel-ratio: 2) {
-    font-size: 18px;
-  }
+        <css>.title{&#13;
+	margin-bottom: 50px;&#13;
+}&#13;
+.input-group-addon{&#13;
+ color : $brand-primary;&#13;
+}&#13;
+&#13;
+textarea{&#13;
+	 font-size: 19px;&#13;
+    font-weight:bold;&#13;
+	&#13;
+}&#13;
+.&#13;
+h3{&#13;
+	font-size: 24px;&#13;
+  font-weight:normal;&#13;
+  margin-bottom: 20px;&#13;
+}&#13;
+.text-left {&#13;
+	float: left;&#13;
+  	font-size: 2.2em;&#13;
+  	margin-top: -5px;&#13;
+  a{&#13;
+    color: #1F8476;&#13;
+  }&#13;
+}&#13;
+.form-group.required .control-label:after {&#13;
+  content:"*";&#13;
+  color:red;&#13;
+}&#13;
+.select-form{&#13;
+  min-height: 75px;&#13;
+}&#13;
+.select-div {&#13;
+  position: absolute;&#13;
+  width: 90%;&#13;
+&#13;
+  select {&#13;
+&#13;
+    border-radius: 3px;&#13;
+    font-size: 16px;&#13;
+    &#13;
+    font-size: 19px;&#13;
+    font-weight:bold;&#13;
+    height: 42px;&#13;
+    appearance: none;&#13;
+    -moz-appearance: none;&#13;
+    -webkit-appearance: none;&#13;
+&#13;
+    &amp;:focus {&#13;
+      outline: none;&#13;
+      box-shadow: none;&#13;
+      border: solid 1px grey;&#13;
+    }&#13;
+  }&#13;
+&#13;
+  .select-side {&#13;
+    &amp;:before {&#13;
+      border-left: solid 1px lightgrey;&#13;
+      content : "";&#13;
+      position: absolute;&#13;
+      left    : 0;&#13;
+      bottom  : 0;&#13;
+      height  : 100%;&#13;
+      width   : 1px;  /* or 100px */&#13;
+    }&#13;
+&#13;
+    width: 40px;&#13;
+    position: absolute;&#13;
+    top: 0px;&#13;
+    background-color: #f1f1f1;&#13;
+    height: 100%;&#13;
+    left: 88%;&#13;
+    border-radius: 0px 3px 3px 0px;&#13;
+    border-right: solid 1px #ccc;&#13;
+    border-top: solid 1px #ccc;&#13;
+    border-bottom: solid 1px #ccc;&#13;
+    pointer-events:none;&#13;
+&#13;
+    i {&#13;
+      &amp;.blue {&#13;
+        color: $brand-primary;&#13;
+      }&#13;
+&#13;
+      left: 30%;&#13;
+      top: 12px;&#13;
+    }&#13;
+  }&#13;
+}&#13;
+&#13;
+&#13;
+input.cal-input{&#13;
+  @media only screen and (min-device-width: 320px) and (max-device-width: 568px) and (-webkit-min-device-pixel-ratio: 2) {&#13;
+    height: 50px;&#13;
+    font-size: 19px;&#13;
+    font-weight:bold;&#13;
+  }&#13;
+}&#13;
+&#13;
+label{&#13;
+  &#13;
+    color:#9B9B9B;&#13;
+  @media only screen and (min-device-width: 320px) and (max-device-width: 568px) and (-webkit-min-device-pixel-ratio: 2) {&#13;
+&#13;
+    font-size: 16px;&#13;
+  }&#13;
+}&#13;
+&#13;
+select{&#13;
+  @media only screen and (min-device-width: 320px) and (max-device-width: 568px) and (-webkit-min-device-pixel-ratio: 2) {&#13;
+&#13;
+    height: 45px;&#13;
+  }&#13;
+}&#13;
+&#13;
+.btn-primary{&#13;
+  @media only screen and (min-device-width: 320px) and (max-device-width: 568px) and (-webkit-min-device-pixel-ratio: 2) {&#13;
+    height: 50px;&#13;
+    font-size: 18px;&#13;
+    width: 100%;&#13;
+    margin-top: 20px;&#13;
+  }&#13;
+}&#13;
+.dropdown-menu{&#13;
+  @media only screen and (min-device-width: 320px) and (max-device-width: 568px) and (-webkit-min-device-pixel-ratio: 2) {&#13;
+    font-size: 18px;&#13;
+  }&#13;
 }</css>
         <data_table>sp_instance</data_table>
         <demo_data/>
@@ -234,7 +335,37 @@ select{
   if (!input) {
     data.timeTr = {};
     data.choices = [];
-    var choiceGr = new GlideRecord('sys_choice');
+    data.imtActivatedStart = '';
+    data.imtActivatedEnd = '';
+	data.imtActivatedStartLunch = '';
+    data.imtActivatedEndLunch = '';	  
+    var index = 1;
+
+    var gr = new GlideRecordSecure('time_card_daily');
+    gr.addQuery('u_user', gs.getUserID());
+    gr.addQuery('u_parent', imt);
+    gr.orderBy('date');
+    gr.query();
+    var count = gr.getRowCount();
+    while (gr.next()) {
+      if(index == 1){
+        // imtActivatedStart = new GlideDateTime(gr.getDisplayValue('date'));
+        // imtActivatedStart = imtActivatedStart.getLocalDate();
+        data.imtActivatedStart = gr.getDisplayValue('date');
+      }
+      if(index == count){
+        // imtActivatedEnd = new GlideDateTime(gr.getDisplayValue('date'));
+        // imtActivatedEnd = imtActivatedEnd.getLocalDate();
+        data.imtActivatedEnd = gr.getDisplayValue('date');
+      }
+      index++;
+
+    }
+
+   // $sp.log(data.imtActivatedStart);
+    //$sp.log(data.imtActivatedEnd);
+/*
+    var choiceGr = new GlideRecordSecure('sys_choice');
     choiceGr.addQuery('name', 'x_snc_time_trackin_time_tracker');
     choiceGr.addQuery('element', 'type');
     choiceGr.orderBy('sequence');
@@ -245,18 +376,20 @@ select{
       temp.value = choiceGr.getDisplayValue('label');
       data.choices.push(temp);
     }
-
+*/
     if (tr) {
 
-      var trGr = new GlideRecord('x_snc_time_trackin_time_tracker');
+      var trGr = new GlideRecordSecure('x_snc_time_trackin_time_tracker');
       trGr.addQuery('sys_id', tr);
       trGr.query();
       if (trGr.next()) {
         data.timeTr.duration = trGr.getDisplayValue('duration');
         data.timeTr.checkin = trGr.getDisplayValue('check_in');
         data.timeTr.checkout = trGr.getDisplayValue('check_out');
-        data.timeTr.note = trGr.getDisplayValue('note') || '';
-        data.timeTr.type = trGr.getDisplayValue('type');
+        data.timeTr.lunchout = trGr.getDisplayValue('lunch_out');
+        data.timeTr.lunchin = trGr.getDisplayValue('lunch_in');		  
+		//data.timeTr.note = trGr.getDisplayValue('note') || '';
+        //data.timeTr.type = trGr.getDisplayValue('type');
         data.timeTr.imtName = trGr.parent.name.getDisplayValue();
         data.timeTr.dateTd = trGr.getDisplayValue('time_card_daily');
       }
@@ -264,13 +397,13 @@ select{
 
   } else {
     if (input.startDate && !tr) {
-      $sp.log('no tr update');
+     // $sp.log('no tr update');
       var dateValue = new GlideDateTime(input.startDate);
       dateValue = dateValue.getLocalDate();
 
-      $sp.log(dateValue);
+     // $sp.log(dateValue);
 
-      var gr = new GlideRecord('time_card_daily');
+      var gr = new GlideRecordSecure('time_card_daily');
       gr.addQuery('date', dateValue);
       gr.addQuery('u_user', gs.getUserID());
       gr.addQuery('u_parent', imt);
@@ -280,70 +413,82 @@ select{
         var gdtStart = new GlideDateTime(input.startDate);
         gdtStart.setDisplayValueInternal(input.startDate);
 
-        $sp.log(gdtStart.getValue());
+			var gdtStartLunch = new GlideDateTime(input.startDateLunch);
+        gdtStartLunch.setDisplayValueInternal(input.startDateLunch);
+
+       // $sp.log(gdtStart.getValue());
+
+        var gdtEndLunch = new GlideDateTime(input.endDateLunch);
+        gdtEndLunch.setDisplayValueInternal(input.endDateLunch);
 
         var gdtEnd = new GlideDateTime(input.endDate);
         gdtEnd.setDisplayValueInternal(input.endDate);
 
-        $sp.log(gdtEnd.getValue());
+      //  $sp.log(gdtEnd.getValue());
 
 
-        var ttgr = new GlideRecord('x_snc_time_trackin_time_tracker');
+        var ttgr = new GlideRecordSecure('x_snc_time_trackin_time_tracker');
         ttgr.initialize();
         ttgr.setValue('check_in', gdtStart.getValue());
         ttgr.setValue('check_out', gdtEnd.getValue());
+        ttgr.setValue('lunch_out', gdtStartLunch.getValue());
+        ttgr.setValue('lunch_in', gdtEndLunch.getValue());		  
         ttgr.setValue('parent', imt);
         ttgr.setValue('user', gs.getUserID());
         ttgr.setValue('time_card_daily', gr.sys_id.toString());
-        ttgr.setValue('type', input.type);
-        ttgr.setValue('note', input.note);
+        //ttgr.setValue('type', input.type);
+        //ttgr.setValue('note', input.note);
         data.returnID = ttgr.insert();
         data.tdID = gr.sys_id.toString();
         data.imt = $sp.getParameter('imt');
       }
-    } else if(tr && input.startDate){
-      $sp.log('tr update');
+    } else if (tr && input.startDate) {
+     // $sp.log('tr update');
       var gdtStart = new GlideDateTime(input.startDate);
       gdtStart.setDisplayValueInternal(input.startDate);
 
-      $sp.log(gdtStart.getValue());
+      var gdtStartLunch = new GlideDateTime(input.startDateLunch);
+      gdtStartLunch.setDisplayValueInternal(input.startDateLunch);
+
+      //$sp.log(gdtStart.getValue());
+
+      var gdtEndLunch = new GlideDateTime(input.endDateLunch);
+      gdtEndLunch.setDisplayValueInternal(input.endDateLunch);
 
       var gdtEnd = new GlideDateTime(input.endDate);
       gdtEnd.setDisplayValueInternal(input.endDate);
 
-      var trGr = new GlideRecord('x_snc_time_trackin_time_tracker');
+      var trGr = new GlideRecordSecure('x_snc_time_trackin_time_tracker');
       trGr.addQuery('sys_id', tr);
       trGr.query();
       if (trGr.next()) {
         trGr.setValue('check_in', gdtStart.getValue());
         trGr.setValue('check_out', gdtEnd.getValue());
-        trGr.setValue('type', input.type);
-        trGr.setValue('note', input.note);
+        trGr.setValue('lunch_out', gdtStartLunch.getValue());
+        trGr.setValue('lunch_in', gdtEndLunch.getValue());		  
+       // trGr.setValue('type', input.type);
+       // trGr.setValue('note', input.note);
         data.returnID = trGr.update();
         data.imt = $sp.getParameter('imt');
         data.tdID = trGr.time_card_daily.toString();
       }
-
     }
   }
-
-
-
 })();]]></script>
         <servicenow>false</servicenow>
         <sys_class_name>sp_widget</sys_class_name>
         <sys_created_by>sush.chan</sys_created_by>
         <sys_created_on>2020-04-23 17:33:56</sys_created_on>
         <sys_id>1f8e89e21b181810b22663142a4bcb23</sys_id>
-        <sys_mod_count>206</sys_mod_count>
+        <sys_mod_count>285</sys_mod_count>
         <sys_name>TIme Tracker Clock in and out</sys_name>
         <sys_package display_value="Time Tracking" source="x_snc_time_trackin">54476f311b14d410b22663142a4bcbc6</sys_package>
         <sys_policy/>
         <sys_scope display_value="Time Tracking">54476f311b14d410b22663142a4bcbc6</sys_scope>
         <sys_update_name>sp_widget_1f8e89e21b181810b22663142a4bcb23</sys_update_name>
         <sys_updated_by>brett.karl</sys_updated_by>
-        <sys_updated_on>2020-05-01 15:39:31</sys_updated_on>
-        <template><![CDATA[<div class="clock-in-out col-md-12">
+        <sys_updated_on>2020-06-10 04:02:50</sys_updated_on>
+        <template><![CDATA[<div class="clock-in-out col-md-12 row">
   <!-- <div class="dropdown">
   <a class="dropdown-toggle" id="dropdown2" role="button" data-toggle="dropdown" data-target="#" href="javascript:void(0)">
     <div class="input-group"><input type="text" class="form-control" data-ng-model="data.dateDropDownInput"><span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
@@ -353,12 +498,13 @@ select{
     <datetimepicker data-ng-model="data.dateDropDownInput" data-on-set-time="onTimeSet(newDate, oldDate)" data-datetimepicker-config="{ dropdownSelector: '#dropdown2',minuteStep:10 }"/>
   </ul>
 </div> -->
-
-  <div class="text-center">
-    <h3>Clock In/Out </h3>
+  <div class="text-center title">
+  <div class="text-left"><a href="javascript:history.back()"><i class="fa fa-chevron-left"></i></a></div>
+    <h3>Enter Time </h3>
   </div>
+    <!-- clock in -->
   <div class="dropdown form-group dropdown-start-parent">
-    <label>Clock In</label>
+    <label>Clock-in</label>
     <a class="dropdown-toggle" id="dropdownStart" role="button" data-toggle="dropdown"
       data-target=".dropdown-start-parent" href="javascript:void(0)">
       <div class="input-group date">
@@ -372,9 +518,47 @@ select{
         data-on-set-time="startDateOnSetTime()" data-before-render="startDateBeforeRender($dates)"></datetimepicker>
     </ul>
   </div>
+  
+     <!-- lunch out -->
+  <div class="dropdown form-group dropdown-start-parent-lunch">
+    <label>Lunch-out</label>
+    <a class="dropdown-toggle" id="dropdownStartLunch" role="button" data-toggle="dropdown"
+      data-target=".dropdown-start-parent-lunch" href="javascript:void(0)">
+      <div class="input-group date">
+        <input ng-required="true" type="text" class="form-control cal-input" data-ng-model="dateRangeStartLunch">
+        <span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
+      </div>
+    </a>
+    <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
+      <datetimepicker ng-required="true" data-ng-model="dateRangeStartLunch"
+        data-datetimepicker-config="{ dropdownSelector: '#dropdownStartLunch', renderOn: 'start-date-changed',minuteStep:5, startView:'hour'}"
+        data-on-set-time="startDateOnSetTimeLunch()" data-before-render="startDateBeforeRenderLunch($dates)"></datetimepicker>
+    </ul>
+  </div>
+  
+  
 
+    <!-- lunch in -->
+  <div class="dropdown form-group dropdown-end-parent-lunch">
+    <label>Lunch-in</label>
+    <a class="dropdown-toggle" id="dropdownEndLunch" role="button" data-toggle="dropdown" data-target=".dropdown-end-parent-lunch"
+      href="javascript:void(0)">
+      <div class="input-group date">
+        <input type="text" class="form-control cal-input" data-ng-model="dateRangeEndLunch">
+        <span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
+      </div>
+    </a>
+    <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
+      <datetimepicker data-ng-model="dateRangeEndLunch"
+        data-datetimepicker-config="{ dropdownSelector: '#dropdownEndLunch', renderOn: 'start-date-changed-lunch' ,minuteStep:5, startView:'hour'}"
+        data-on-set-time="endDateOnSetTimeLunch()"
+        data-before-render="endDateBeforeRenderLunch($view, $dates, $leftDate, $upDate, $rightDate)"></datetimepicker>
+    </ul>
+  </div>
+
+    <!-- clock out -->
   <div class="dropdown form-group dropdown-end-parent">
-    <label>Clock Out</label>
+    <label>Clock-out</label>
     <a class="dropdown-toggle" id="dropdownEnd" role="button" data-toggle="dropdown" data-target=".dropdown-end-parent"
       href="javascript:void(0)">
       <div class="input-group date">
@@ -384,12 +568,12 @@ select{
     </a>
     <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
       <datetimepicker data-ng-model="dateRangeEnd"
-        data-datetimepicker-config="{ dropdownSelector: '#dropdownEnd', renderOn: 'start-date-changed' ,minuteStep:5, startView:'hour'}"
+        data-datetimepicker-config="{ dropdownSelector: '#dropdownEnd', renderOn: 'end-date-changed-lunch' ,minuteStep:5, startView:'hour'}"
         data-on-set-time="endDateOnSetTime()"
         data-before-render="endDateBeforeRender($view, $dates, $leftDate, $upDate, $rightDate)"></datetimepicker>
     </ul>
   </div>
-
+<!--
   <div class="form-group required select-form">
     <label class="control-label" for="exampleFormControlSelect1">Type</label>
     <div class="select-div">
@@ -407,9 +591,10 @@ select{
     <label for="comment">Note:</label>
     <textarea maxlength="500" class="form-control" ng-model="c.note" rows="3" id="comment"></textarea>
   </div>
-
+-->
   <div class="form-group">
-    <button ng-click="c.submit()" class="btn btn-primary mb-2">Submit</button>
+    <button ng-if="data.tr" ng-click="c.submit()" class="btn btn-primary mb-2">Save</button>
+    <button ng-if="!data.tr" ng-click="c.submit()" class="btn btn-primary mb-2">Submit</button>
   </div>
 
 
